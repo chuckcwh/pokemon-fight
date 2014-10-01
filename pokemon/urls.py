@@ -24,6 +24,7 @@ urlpatterns = patterns('',
 
     url(r'^all_pokemon/$', 'pokemon_app.views.all_pokemon', name='all_pokemon'),
     url(r'^new_pokemon/$', 'pokemon_app.views.new_pokemon', name='new_pokemon'),
+    url(r'^remove_team/$', 'pokemon_app.views.remove_team', name='remove_team'),
     url(r'^pokemon_data_dump/$', 'pokemon_app.views.pokemon_data_dump', name='pokemon_data_dump'),
 
 

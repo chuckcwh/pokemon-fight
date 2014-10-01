@@ -61,25 +61,34 @@ def all_pokemon(request):
 
 @csrf_exempt
 def new_pokemon(request):
+    pokemonadd = []
     if request.method == 'POST':
         data = json.loads(request.body)
-        time.sleep(int(data['delay'])*0.1)
-        team = Team.objects.filter(name=data['team'])
-        if len(team):
-            team = team[0]
-        else:
-            team = Team.objects.create(name=data['team'])
-        print(team)
-        pokemon = Pokemon.objects.create(
-            name=data['name'],
-            image=data['image'],
-            pokedex_id=data['pokedex_id'],
-            team=team
-        )
-    response = serializers.serialize('json', [pokemon])
+        # time.sleep(int(data['delay'])*0.1)
+        for i in data:
+            team = Team.objects.filter(name=i['team'])
+            if len(team):
+                team = team[0]
+            else:
+                team = Team.objects.create(name=i['team'], user = request.user)
+            pokemon = Pokemon.objects.create(
+                name=i['name'],
+                image=i['image'],
+                pokedex_id=i['pokedex_id'],
+                team=team
+            )
+            pokemonEach = serializers.serialize('json', [pokemon])
+            pokemonadd.append(pokemonEach)
+    response = pokemonadd
     return HttpResponse(response,
                         content_type='application/json')
 
+def remove_team(request, team_name):
+    item = Team.objects.get(name=team_name)
+    item.delete()
+    # return HttpResponse(response,
+    #                     content_type='application/json')
+    # return redirect("remove_team")
 
 def pokemon_data_dump(request):
     pokemon = Pokemon.objects.all()

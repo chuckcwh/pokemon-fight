@@ -89,22 +89,29 @@ var pokemonData = [];
         var teamName = $("#teamname").val();
         for (i=0;i<pokemonData.length;i++) {
             pokemonData[i].team = teamName;
-            pokemonData[i].delay = i;
-            pokemo = JSON.stringify(pokemonData[i]);
-            $.ajax({
-                url: '/new_pokemon/',
-                type: 'POST',
-                dataType: 'json',
-                data: pokemo,
-                success: function (response) {
-                    console.log("ajax success");
-                },
-                error: function (response) {
-                    console.log("ajax error")
-                }
-            });
+//            pokemonData[i].delay = i;
         }
-    })
+        pokemo = JSON.stringify(pokemonData);
+        $.ajax({
+            url: '/new_pokemon/',
+            type: 'POST',
+            dataType: 'json',
+            data: pokemo,
+            success: function (response) {
+                console.log("ajax success");
+            },
+            error: function (response) {
+                console.log("ajax error")
+            }
+        });
+
+    });
+
+    $('#deletecheck').on('click', function() {
+        var deleteTeam = $("#delectbox").val();
+        console.log(deleteTeam);
+    });
+
 });
 
 
