@@ -1,7 +1,36 @@
-
 $(document).ready(function(){
 var pokeResponse, pokemon = {};
 var pokemonData = [];
+
+    function createButtons (data) {
+        var buttonsDisplayed = {};
+        for (var i = 0; i < data.length; i++) {
+            buttonsDisplayed[data[i]] = data[i].team;
+        }
+    }
+
+    $.ajax({
+        url: 'all_your_pokemon/',
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            for (i=0; i<data.length; i++) {
+                name = data[i].name;
+                pokedex_id = data[i].pokedex_id;
+                team = data[i].team.name;
+                image = data[i].image;
+                var spriteUrl = 'http://pokeapi.co/' + image;
+
+                // call a different function that creates one of each button
+                // createButton(data);
+//                if ( $('#your_pokeTeam').indexOf(team)) {
+//                    $('#your_pokeTeam').append("<button class='teambutton'>" + team +"</button>");
+//                }
+//                $('#footer').append("<div class='pokebox'><img class='pokemon' src=" + spriteUrl + "/><div class='name'>" + name + "</div><div class='id'>" +
+//                    pokedex_id + team + "</div></div>");
+            }
+        }
+    });
 
     $('#pokeOne').on('click', function(){
         pokemonData = [];
@@ -106,6 +135,9 @@ var pokemonData = [];
         });
 
     });
+
+//    for
+//    $('#deletebox').html("<option class='teamExisted' value=")
 
     $('#deletecheck').on('click', function() {
         var deleteTeam = $("#delectbox").val();

@@ -41,23 +41,27 @@ def register(request):
         'form': form,
     })
 
-def all_pokemon(request):
-    pokemon_objects = Pokemon.objects.all()
-    collection = []
-    for pokemon in pokemon_objects:
-        collection.append({
-            'name': pokemon.name,
-            'image': pokemon.image,
-            'pokedex_id': pokemon.pokedex_id,
-            'team': {
-                'id': pokemon.team.id,
-                'name': pokemon.team.name,
-            }
-        })
-    return HttpResponse(
-                json.dumps(collection),
-                content_type='application.json'
-           )
+def all_your_team(request):
+    team_objects = Team.objects.filter
+
+
+# def all_your_pokemon(request):
+#     pokemon_objects = Pokemon.objects.filter(team__user=request.user)
+#     collection = []
+#     for pokemon in pokemon_objects:
+#         collection.append({
+#             'name': pokemon.name,
+#             'image': pokemon.image,
+#             'pokedex_id': pokemon.pokedex_id,
+#             'team': {
+#                 'id': pokemon.team.id,
+#                 'name': pokemon.team.name,
+#             }
+#         })
+#     return HttpResponse(
+#                 json.dumps(collection),
+#                 content_type='application.json'
+#            )
 
 @csrf_exempt
 def new_pokemon(request):
@@ -88,7 +92,7 @@ def remove_team(request, team_name):
     item.delete()
     # return HttpResponse(response,
     #                     content_type='application/json')
-    # return redirect("remove_team")
+    # return redirect("home")
 
 def pokemon_data_dump(request):
     pokemon = Pokemon.objects.all()

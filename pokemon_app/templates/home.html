@@ -1,11 +1,11 @@
 {% extends 'base_template.html' %}
-
+{% load staticfiles %}
 {% block content %}
 
     <div align="right">
         <h3>Delete Team?</h3>
         <select id="deletebox">
-            
+
         </select>
         <button id="deletecheck">Delete It</button>
     </div>
@@ -23,6 +23,10 @@
         <button id="save">Save pokemon(s)</button>
     </div>
 
+    <div id="footer">
+        <h1 id="all">All your pokemons</h1>
+        <div id="your_pokeTeam"></div>
+    </div>
 
 
 {% endblock content %}
