@@ -1,0 +1,14 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+    <div class="middlebox">
+        <table>
+            <form method="post" action=".">
+                {% csrf_token %}
+                {{ form.as_table }}
+
+                <input type="submit" value="Submit">
+            </form>
+        </table>
+    </div>
+{% endblock %}

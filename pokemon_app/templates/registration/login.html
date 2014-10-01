@@ -1,0 +1,17 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+
+    <div class="middlebox">
+    <form method="post" action=".">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <input type="submit" value="Log in">
+        </form>
+
+        <p>Not member? <a href="{% url 'register' %}">Register!</a></p>
+        <p>Forgot your password? <a href="{% url 'password_reset' %}">Click here</a></p>
+    </div>
+
+{% endblock %}

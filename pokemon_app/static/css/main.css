@@ -1,0 +1,33 @@
+body {
+    font-family: arial;
+    background: #FFF0F0;
+
+}
+
+#bodylayout {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#team {
+    margin: 20px;
+    background-color: #80FF80;
+    text-align: center;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.pokebox {
+    display: inline-block;
+}
+.pokemon {
+    border: 1px solid black;
+    margin: 3px;
+    width: 150px;
+    height:150px;
+}
+
+.middlebox {
+  width: 700px ;
+  margin-left: auto ;
+  margin-right: auto ;
+}
