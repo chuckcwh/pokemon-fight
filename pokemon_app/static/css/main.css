@@ -46,6 +46,10 @@ body {
     margin-right: auto ;
 }
 
+#throw{
+    display: none;
+}
+
 #footer {
 
     text-align: center;

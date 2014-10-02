@@ -43,6 +43,18 @@ var pokemonData = [];
     //Random choose one pokemon
     $('#pokeOne').on('click', function(){
         pokemonData = [];
+        $("throw")
+
+        var show = function(){
+          myDiv.style.display = "block";
+          setTimeout(hide, 5000);  // 5 seconds
+        }
+
+        var hide = function(){
+          myDiv.style.display = "none";
+        }
+
+        show();
         $('#sprites').html("<p><input id='teamname' type='text'>:Team Name</input></p>");
         var ranNumber = Math.floor(Math.random()*718 + 2);
         $.ajax({
