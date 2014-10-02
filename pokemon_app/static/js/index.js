@@ -2,35 +2,50 @@ $(document).ready(function(){
 var pokeResponse, pokemon = {};
 var pokemonData = [];
 
-    function createButtons (data) {
-        var buttonsDisplayed = {};
-        for (var i = 0; i < data.length; i++) {
-            buttonsDisplayed[data[i]] = data[i].team;
-        }
-    }
+//    function createButtons (data) {
+//        var buttonsDisplayed = {};
+//        for (var i = 0; i < data.length; i++) {
+//            buttonsDisplayed[data[i]] = data[i].team;
+//        }
+//    }
 
     $.ajax({
-        url: 'all_your_pokemon/',
+        url: 'all_your_team/',
         type: "GET",
         dataType: "json",
         success: function(data) {
+            console.log(data);
             for (i=0; i<data.length; i++) {
-                name = data[i].name;
-                pokedex_id = data[i].pokedex_id;
-                team = data[i].team.name;
-                image = data[i].image;
-                var spriteUrl = 'http://pokeapi.co/' + image;
-
-                // call a different function that creates one of each button
-                // createButton(data);
-//                if ( $('#your_pokeTeam').indexOf(team)) {
-//                    $('#your_pokeTeam').append("<button class='teambutton'>" + team +"</button>");
-//                }
-//                $('#footer').append("<div class='pokebox'><img class='pokemon' src=" + spriteUrl + "/><div class='name'>" + name + "</div><div class='id'>" +
-//                    pokedex_id + team + "</div></div>");
+                team = data[i].name;
+                teamId = data[i].id;
+                console.log(teamId);
+                $('#your_pokeTeam').append("<button class='teambutton' value='" + teamId + "'>" + team +"</button>");
             }
         }
     });
+
+    $(document).on('click', '.teambutton', function(){
+        var teamId = $(this).val();
+        var teamIdData = {team_id: teamId};
+        $.ajax({
+            url: 'pokemon_of_team/',
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(teamIdData),
+            success: function(data) {
+                $('#your_pokemons').html("");
+                for (i=0; i<data.length; i++) {
+                    name = data[i].name;
+                    pokedex_id = data[i].pokedex_id;
+                    image = data[i].image;
+                    var spriteUrl = 'http://pokeapi.co/' + image;
+                    $('#your_pokemons').append("<div class='pokebox'><img class='pokemon' src=" + spriteUrl + "/><div class='name'>" + name + "</div><div class='id'>" +
+                        pokedex_id + team + "</div></div>");
+                }
+            }
+        });
+    });
+
 
     $('#pokeOne').on('click', function(){
         pokemonData = [];

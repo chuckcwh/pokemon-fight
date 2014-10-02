@@ -12,7 +12,7 @@ from pokemon import settings
 from pokemon_app.forms import EmailUserCreationForm
 from pokemon_app.models import Pokemon, Team
 
-
+@login_required
 def home(request):
     return render(request, 'home.html')
 
@@ -42,26 +42,34 @@ def register(request):
     })
 
 def all_your_team(request):
-    team_objects = Team.objects.filter
+    team_objects = Team.objects.filter(user = request.user)
+    collection = []
+    for team in team_objects:
+        collection.append({
+            'name': team.name,
+            'id': team.id
+        })
 
+    return HttpResponse(
+                json.dumps(collection),
+                content_type='application.json'
+    )
 
-# def all_your_pokemon(request):
-#     pokemon_objects = Pokemon.objects.filter(team__user=request.user)
-#     collection = []
-#     for pokemon in pokemon_objects:
-#         collection.append({
-#             'name': pokemon.name,
-#             'image': pokemon.image,
-#             'pokedex_id': pokemon.pokedex_id,
-#             'team': {
-#                 'id': pokemon.team.id,
-#                 'name': pokemon.team.name,
-#             }
-#         })
-#     return HttpResponse(
-#                 json.dumps(collection),
-#                 content_type='application.json'
-#            )
+@csrf_exempt
+def pokemon_of_team(request):
+    data = json.loads(request.body)
+    pokemon_objects = Pokemon.objects.filter(team=data['team_id'])
+    collection = []
+    for pokemon in pokemon_objects:
+        collection.append({
+            'name': pokemon.name,
+            'image': pokemon.image,
+            'pokedex_id': pokemon.pokedex_id,
+        })
+    return HttpResponse(
+                json.dumps(collection),
+                content_type='application.json'
+    )
 
 @csrf_exempt
 def new_pokemon(request):
