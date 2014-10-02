@@ -12,9 +12,15 @@ from pokemon import settings
 from pokemon_app.forms import EmailUserCreationForm
 from pokemon_app.models import Pokemon, Team
 
-@login_required
 def home(request):
     return render(request, 'home.html')
+
+def pokemon(request):
+    return render(request, 'pokemon.html')
+
+@login_required
+def pokemon_battle(request):
+    return render(request, 'pokemon_battle.html')
 
 def faq(request):
     return render(request, 'faq.html')

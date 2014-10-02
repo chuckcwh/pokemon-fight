@@ -2,19 +2,12 @@ $(document).ready(function(){
 var pokeResponse, pokemon = {};
 var pokemonData = [];
 
-//    function createButtons (data) {
-//        var buttonsDisplayed = {};
-//        for (var i = 0; i < data.length; i++) {
-//            buttonsDisplayed[data[i]] = data[i].team;
-//        }
-//    }
-
+    //Show user's team
     $.ajax({
-        url: 'all_your_team/',
+        url: '/all_your_team/',
         type: "GET",
         dataType: "json",
         success: function(data) {
-            console.log(data);
             for (i=0; i<data.length; i++) {
                 team = data[i].name;
                 teamId = data[i].id;
@@ -24,11 +17,12 @@ var pokemonData = [];
         }
     });
 
+    //Show team's pokemons of user
     $(document).on('click', '.teambutton', function(){
         var teamId = $(this).val();
         var teamIdData = {team_id: teamId};
         $.ajax({
-            url: 'pokemon_of_team/',
+            url: '/pokemon_of_team/',
             type: "POST",
             dataType: "json",
             data: JSON.stringify(teamIdData),
@@ -39,14 +33,14 @@ var pokemonData = [];
                     pokedex_id = data[i].pokedex_id;
                     image = data[i].image;
                     var spriteUrl = 'http://pokeapi.co/' + image;
-                    $('#your_pokemons').append("<div class='pokebox'><img class='pokemon' src=" + spriteUrl + "/><div class='name'>" + name + "</div><div class='id'>" +
-                        pokedex_id + team + "</div></div>");
+                    $('#your_pokemons').append("<div class='pokebox'><img class='f_pokemon' src=" + spriteUrl + "/><div class='name'>" + name + "</div><div class='id'>" +
+                        pokedex_id + "</div></div>");
                 }
             }
         });
     });
 
-
+    //Random choose one pokemon
     $('#pokeOne').on('click', function(){
         pokemonData = [];
         $('#sprites').html("<p><input id='teamname' type='text'>:Team Name</input></p>");
@@ -77,7 +71,7 @@ var pokemonData = [];
 
 
 
-
+    //Random choose 6 pokemon
     $('#pokeTeam').on('click', function(){
         pokemonData = [];
         $('#sprites').html("<p><input id='teamname' type='text'>:Team Name</input></p>");
@@ -109,6 +103,7 @@ var pokemonData = [];
     });
 
 
+    //Shows my favorite team
     $('#pokemy').on('click', function() {
         $('#sprites').html("");
         for (i=0;i<6;i++) {
@@ -129,6 +124,7 @@ var pokemonData = [];
         }
     });
 
+    //save pokemon(s) and team to database
     $('#save').on('click', function() {
         var teamName = $("#teamname").val();
         for (i=0;i<pokemonData.length;i++) {

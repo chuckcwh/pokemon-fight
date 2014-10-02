@@ -1,0 +1,13 @@
+{% extends 'base_template.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="jumbotron" id="pokemon">
+       <div class="container">
+       <h1><a style="text-decoration:none" href="{% url 'pokemon_battle' %}"><i>Pokemon world!</i></a></h1>
+       <p><i>Let's battle!!</i></p>
+      </div>
+    </div>
+
+{% endblock content %}

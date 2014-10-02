@@ -4,6 +4,17 @@ body {
 
 }
 
+#pokemon {
+    margin-top: -20px;
+    height: 580px;
+    background-size: contain;
+    background-image: url('/static/img/pokemon.jpg');
+}
+
+#pokemon h1 {
+    text-shadow: 2px 2px darkblue;
+}
+
 #bodylayout {
     margin-left: 50px;
     margin-right: 50px;
@@ -15,7 +26,10 @@ body {
     text-align: center;
     margin-left: 50px;
     margin-right: 50px;
+    border-radius: 10px;
+
 }
+
 .pokebox {
     display: inline-block;
 }
@@ -33,10 +47,24 @@ body {
 }
 
 #footer {
-    border: 2px solid blue;
-    background: lightblue;
-    margin-left: 50px;
-    margin-right: 50px;
-    width: 800px;
-    height: 150px;
+
+    text-align: center;
+    width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+
+    height: 220px;
+}
+
+#your_pokemons {
+    border: 2px solid lightblue;
+    background: white;
+    border-radius: 15px;
+}
+
+.f_pokemon {
+    border: 1px solid black;
+    margin: 1px;
+    width: 80px;
+    height: 80px;
 }
