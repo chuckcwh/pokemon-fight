@@ -2,6 +2,13 @@ $(document).ready(function(){
 var pokeResponse, pokemon = {};
 var pokemonData = [];
 
+    $( "#home_pokemon" ).hover(function() {
+        $( this ).fadeTo("slow", 1);
+        }, function() {
+        $( this ).fadeTo( "slow" , 0.2);
+        }
+    );
+
     //Show user's team
     $.ajax({
         url: '/all_your_team/',
@@ -17,7 +24,7 @@ var pokemonData = [];
         }
     });
 
-    //Show team's pokemons of user
+    //Show team's pokemons of requested user
     $(document).on('click', '.teambutton', function(){
         var teamId = $(this).val();
         var teamIdData = {team_id: teamId};
@@ -41,21 +48,17 @@ var pokemonData = [];
     });
 
     //Random choose one pokemon
-    $('#pokeOne').on('click', function(){
+    $('#pokeOne').on('click', function() {
+        $('#sprites').html("");
+        $('#team').show();
+        $('#throw').show();
+        setTimeout("$('#throw').hide();", 2800);
+        setTimeout(pickOne, 3000);
+    });
+
+    var pickOne = function (){
         pokemonData = [];
-        $("throw")
-
-        var show = function(){
-          myDiv.style.display = "block";
-          setTimeout(hide, 5000);  // 5 seconds
-        }
-
-        var hide = function(){
-          myDiv.style.display = "none";
-        }
-
-        show();
-        $('#sprites').html("<p><input id='teamname' type='text'>:Team Name</input></p>");
+        $('#sprites').html("<p><input id='teamname' type='text' placeholder='Team Name'></input></p>");
         var ranNumber = Math.floor(Math.random()*718 + 2);
         $.ajax({
             url: "http://pokeapi.co/api/v1/sprite/" + ranNumber + "/",
@@ -77,16 +80,23 @@ var pokemonData = [];
                 });
             }
         });
-
-    });
+    };
 
 
 
 
     //Random choose 6 pokemon
     $('#pokeTeam').on('click', function(){
+        $('#sprites').html("");
+        $('#team').show();
+        $('#throw').show();
+        setTimeout("$('#throw').hide();", 2800);
+        setTimeout(pickTeam, 3000);
+    });
+
+    var pickTeam = function (){
         pokemonData = [];
-        $('#sprites').html("<p><input id='teamname' type='text'>:Team Name</input></p>");
+        $('#sprites').html("<p><input id='teamname' type='text' placeholder='Team Name'></input></p>");
         for (i=0;i<6;i++) {
             var ranNumber = Math.floor(Math.random()*718 + 2);
             $.ajax({
@@ -111,8 +121,7 @@ var pokemonData = [];
                 }
             });
         }
-
-    });
+    };
 
 
     //Shows my favorite team
@@ -156,8 +165,11 @@ var pokemonData = [];
                 console.log("ajax error")
             }
         });
-
+        setTimeout(addButton, 500);
     });
+//    var addButton = function() {
+//        $('#your_pokeTeam').append("<button class='teambutton' value='" + teamId + "'>" + teamName +"</button>");
+//    };
 
 //    for
 //    $('#deletebox').html("<option class='teamExisted' value=")
