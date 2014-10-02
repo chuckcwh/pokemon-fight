@@ -2,7 +2,7 @@ $(document).ready(function(){
 var pokeResponse, pokemon = {};
 var pokemonData = [];
 
-    $( "#home_pokemon" ).hover(function() {
+    $( ".home_pic" ).hover(function() {
         $( this ).fadeTo("slow", 1);
         }, function() {
         $( this ).fadeTo( "slow" , 0.2);
@@ -152,6 +152,7 @@ var pokemonData = [];
             pokemonData[i].team = teamName;
 //            pokemonData[i].delay = i;
         }
+        $('#team').hide();
         pokemo = JSON.stringify(pokemonData);
         $.ajax({
             url: '/new_pokemon/',

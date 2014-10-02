@@ -3,8 +3,15 @@
 
 {% block content %}
     <h1 align="center">Arcade Game</h1>
-    <div id="home_pokemon">
-        <a href="{% url 'pokemon' %}"><img src="{% static "img/home_pokemon.jpg" %}"></a>
-        <p><i>Pokemon Battle</i></p>
+    <div style="display:inline;">
+        <a class="home_pic" href="{% url 'pokemon' %}"><img src="{% static "img/home_pokemon.jpg" %}"></a>
+    </div>
+
+    <div style="display:inline;">
+        <a class="home_pic" href="{% url 'home' %}"><img src="{% static "img/home_snake.jpg" %}"></a>
+    </div>
+
+    <div style="display:inline;">
+        <a class="home_pic" href="{% url 'home' %}"><img src="{% static "img/home_paint.jpg" %}"></a>
     </div>
 {% endblock content %}
