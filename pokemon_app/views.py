@@ -19,6 +19,10 @@ def pokemon(request):
     return render(request, 'pokemon.html')
 
 @login_required
+def pokemon_catch(request):
+    return render(request, 'pokemon_catch.html')
+
+@login_required
 def pokemon_battle(request):
     return render(request, 'pokemon_battle.html')
 

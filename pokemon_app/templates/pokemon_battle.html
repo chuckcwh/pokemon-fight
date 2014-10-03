@@ -4,39 +4,23 @@
 
 {% block content %}
     <div id="bodylayout">
-    <div align="right">
-        <h3>Delete Team?</h3>
-        <select id="deletebox">
+        <h1>pokemon battle!</h1>
 
-        </select>
-        <button id="deletecheck">Delete It</button>
-    </div>
-
-    <div align="center">
-        <h1>Catch pokemon(s)!</h1>
-
-        <button id="pokeOne">Random One</button>
-        <button id="pokeTeam">Random Team</button>
-        <button id="pokemy">My Fav Team</button>
-        <div id="team">
-            <div id="sprites">
-            </div>
-            <div id="throw">
-                <span><i>Throw ~~</i></span>
-                <img src="{% static "img/throw_pokemon_ball.gif" %}">
-                <span><i>Poke Ball!</i></span>
-            </div>
+        <div>
+            <div id="upper_battle"></div>
+            <div id="lower_battle"></div>
         </div>
-        <button id="save">Save pokemon(s)</button>
-    </div>
 
-    <div id="footer">
-        <h3 id="all">Select Your Teams</h3>
-        <div id="your_pokeTeam"></div>
-        <div id="your_pokemons"></div>
-    </div>
+
+        <div id="footer">
+            <h3 id="all">Select Your Teams</h3>
+            <div id="your_pokeTeam"></div>
+            <div id="your_pokemons"></div>
+        </div>
+        <div align="right">
+            <p><a href="{% url 'pokemon_catch' %}">I Want to Start Again</a></p>
+            <p><a href="{% url 'profile' %}">Show Me the Pokedex world</a></p>
+        </div>
     </div>
 
 {% endblock content %}
-
-

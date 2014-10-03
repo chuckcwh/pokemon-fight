@@ -21,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^reset/done/$', 'django.contrib.auth.views.password_reset_complete', name='password_reset_complete'),
 
     url(r'^pokemon/$', 'pokemon_app.views.pokemon', name='pokemon'),
+    url(r'^pokemon_catch/$', 'pokemon_app.views.pokemon_catch', name='pokemon_catch'),
     url(r'^pokemon_battle/$', 'pokemon_app.views.pokemon_battle', name='pokemon_battle'),
     url(r'^all_your_team/$', 'pokemon_app.views.all_your_team', name='all_your_team'),
     url(r'^pokemon_of_team/$', 'pokemon_app.views.pokemon_of_team', name='pokemon_of_team'),
