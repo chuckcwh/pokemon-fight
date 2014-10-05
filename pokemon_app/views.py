@@ -112,6 +112,31 @@ def remove_team(request, team_name):
     #                     content_type='application/json')
     # return redirect("home")
 
+def my_battle_pokemon(request):
+    pokemon = Pokemon.objects.get(id=28)
+    my_choose = {
+        'name': pokemon.name,
+        'image': pokemon.image,
+        'pokedex_id': pokemon.pokedex_id,
+    }
+    return HttpResponse(
+                json.dumps(my_choose),
+                content_type='application.json'
+    )
+
+# def enemy_pokemon(request):
+#     pokemon = Pokemon.objects.get(id=28)
+#     my_choose = {
+#         'name': pokemon.name,
+#         'image': pokemon.image,
+#         'pokedex_id': pokemon.pokedex_id,
+#     }
+#     return HttpResponse(
+#                 json.dumps(my_choose),
+#                 content_type='application.json'
+#     )
+
+
 def pokemon_data_dump(request):
     pokemon = Pokemon.objects.all()
     data = json.dumps('json', pokemon)

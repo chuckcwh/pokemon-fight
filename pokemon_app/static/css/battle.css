@@ -1,0 +1,71 @@
+body {
+    text-align: center;
+}
+
+#battle_window {
+    border: 1px solid black;
+    height: 200px;
+    width: 430px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#my_poke_energy {
+    border: 1px solid black;
+    display: inline-block;
+    float: left;
+    height: 50%;
+    width: 15%;
+}
+#animation {
+    border: 1px solid black;
+    display: inline-block;
+    margin: 0 auto;
+    height: 70%;
+    width: 20%;
+}
+
+#ani_pic {
+    display: none;
+    max-width:100%;
+    max-height:100%;
+}
+
+#enemy_poke_energy {
+    border: 1px solid black;
+    display: inline-block;
+    float: right;
+    height: 50%;
+    width: 15%;
+}
+
+#condition_myP {
+    border: 1px solid black;
+    display: inline-block;
+    float: left;
+    height: 15%;
+    width: 100px;
+    margin-top: 5px;
+}
+
+#condition_enP {
+    border: 1px solid black;
+    display: inline-block;
+    float: right;
+    height: 15%;
+    width: 100px;
+    margin-top: 5px;
+}
+
+#discription {
+    float: center;
+    border: 1px solid black;
+    height: 100px;
+    width: 380px;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#attack {
+    display: none;
+}

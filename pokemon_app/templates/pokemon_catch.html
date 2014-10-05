@@ -15,9 +15,10 @@
         <div align="center">
             <h1>Catch pokemon(s)!</h1>
 
-            <button id="pokeOne">Random One</button>
-            <button id="pokeTeam">Random Team</button>
-            <button id="pokemy">My Fav Team</button>
+            <button id="pokeOne" class="btn btn-info">Random One</button>
+            <button id="pokeTeam" class="btn btn-info">Random Team</button>
+            <button id="pokemy" class="btn btn-info">My Fav Team</button>
+
             <div id="team">
                 <div id="sprites">
                 </div>
@@ -26,9 +27,12 @@
                     <img src="{% static "img/throw_pokemon_ball.gif" %}">
                     <span><i>Poke Ball!</i></span>
                 </div>
+                <br>
+                <button id="save" class="btn btn-warning">Save pokemon(s)</button>
             </div>
-            <button id="save">Save pokemon(s)</button>
+
         </div>
+
 
         <div id="footer">
             <h3 id="all">Select Your Teams</h3>

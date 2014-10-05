@@ -18,11 +18,12 @@ var pokemonData = [];
             for (i=0; i<data.length; i++) {
                 team = data[i].name;
                 teamId = data[i].id;
-                console.log(teamId);
-                $('#your_pokeTeam').append("<button class='teambutton' value='" + teamId + "'>" + team +"</button>");
+                $('#your_pokeTeam').append("<button class='teambutton btn btn-success' value='" + teamId + "'>" + team +"</button>");
             }
         }
     });
+
+
 
     //Show team's pokemons of requested user
     $(document).on('click', '.teambutton', function(){
@@ -180,28 +181,5 @@ var pokemonData = [];
         console.log(deleteTeam);
     });
 
+
 });
-
-
-//
-//
-//$.ajax({
-//    url: '/all_pokemon',
-//    type: "GET",
-//    success: function(data) {
-//        console.log(data);
-//    }
-//});
-//
-//var pokemonData = {
-//    pokedex_id: 25,
-//    image: "/media/img/25.png",
-//    name: "Pikachu",
-//    team: {
-//        name: "Random Team",
-//        id: 1
-//    }
-//};
-//
-//pokemonData = JSON.stringify(pokemonData);
-//
