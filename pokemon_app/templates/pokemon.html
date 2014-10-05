@@ -1,13 +1,24 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
 
+{% block title %}
+    <link type="text/css" href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+{% endblock title %}
+
+
 {% block content %}
 
     <div class="jumbotron" id="pokemon">
-       <div class="container">
-       <h1><a style="text-decoration:none" href="{% url 'pokemon_catch' %}"><i>Pokemon world!</i></a></h1>
-       <p><i>Let's battle!!</i></p>
-      </div>
+        <div class="container">
+            <h1><a style="text-decoration:none" href="{% url 'pokemon_catch' %}"><i>Pokemon world!</i></a></h1>
+            <p>
+                <button id="load_game" class="btn btn-small btn-primary"><i>Load Game</i></button>
+                <button id="new_game" class="btn btn-large btn-primary"><i>New Game</i></button>
+            </p>
+        </div>
     </div>
 
 {% endblock content %}

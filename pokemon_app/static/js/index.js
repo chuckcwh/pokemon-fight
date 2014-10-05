@@ -9,6 +9,13 @@ var pokemonData = [];
         }
     );
 
+
+    $('#load_game').on('click', function (){
+        window.location.href = "/pokemon_catch/" ;
+    });
+
+
+
     //Show user's team
     $.ajax({
         url: '/all_your_team/',

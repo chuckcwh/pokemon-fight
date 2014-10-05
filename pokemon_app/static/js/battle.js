@@ -96,9 +96,7 @@ $(document).ready(function() {
         $('#condition_enP').html("- " + damage);
         enemyblood -= damage;
         setTimeout("$('#battle_my_icon').show();", 200);
-        setTimeout("$('#battle_my_icon').hide();", 1000);
-        setTimeout("$('#battle_enemy_icon').show();", 1200);
-        setTimeout("$('#battle_enemy_icon').hide();", 2000);
+        setTimeout("$('#battle_my_icon').hide();", 1500);
         if (enemyblood <= 0) {
             var say = function () {
                 $('#discription').append('<p><b>You win</b></p>');
@@ -116,6 +114,8 @@ $(document).ready(function() {
                 show_my_condition();
             };
             setTimeout(say2, 2000);
+            setTimeout("$('#battle_enemy_icon').show();", 2000);
+            setTimeout("$('#battle_enemy_icon').hide();", 3500);
             myblood -= damage;
             if (myblood <= 0) {
                 var say3 = function () {
