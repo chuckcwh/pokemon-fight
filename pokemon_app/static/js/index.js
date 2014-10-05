@@ -11,7 +11,17 @@ var pokemonData = [];
 
 
     $('#load_game').on('click', function (){
-        window.location.href = "/pokemon_catch/" ;
+        window.location.href = "/pokemon_catch/";
+        $(document).ready(function(){
+            $('#pokeOne').append('<p>new_game</p>');
+        })
+    });
+
+    $('#new_game').on('click', function () {
+        window.location.href = "/pokemon_catch/";
+        $(document).ready(function(){
+            $('#pokeOne').append('<p>new_game</p>');
+        })
     });
 
 
