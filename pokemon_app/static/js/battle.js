@@ -7,24 +7,28 @@ $(document).ready(function() {
 
     //battle system - my pokemon
     $('#my_choice').on('click', function() {
-        console.log("hell ya");
+        show_my_condition();
         $.ajax({
             url: '/my_battle_pokemon/',
             type: "GET",
             dataType: "json",
             success: function(data) {
-                console.log("yaaaa");
                 name = data.name;
                 pokedex_id = data.pokedex_id;
                 image = data.image;
                 var spriteUrl = 'http://pokeapi.co/' + image;
-                $('#my_pokemon').html("<div class='pokebox'><img class='pokemon' src=" + spriteUrl + "/><div class='name'>" + name + "</div></div>");
+                $('#my_pokemon').append("<div class='pokebox battle_mode'><img class='pokemon' src=" +
+                    spriteUrl + "/><div class='name'>" + name + "</div></div>");
             }
         });
     });
 
     //battle system - enemy pokemon
     $('#enemy_choice').on('click', function() {
+        show_enemy_condition();
+        $('#enemy_choice').hide();
+        $('#my_choice').hide();
+        $('#attack').show();
         pokemonData = [];
         $('#enemy_pokemon').html("");
         var ranNumber = Math.floor(Math.random()*718 + 2);
@@ -38,7 +42,7 @@ $(document).ready(function() {
                 pokedex_id = data.id - 1;
                 image = data.image;
                 var spriteUrl = 'http://pokeapi.co/' + data.image;
-                $('#enemy_pokemon').append("<div class='pokebox'><img class='pokemon' src=" +
+                $('#enemy_pokemon').append("<div id='battle_mode' class='pokebox'><img class='pokemon' src=" +
                     spriteUrl + "/><div class='name'>" + name + "</div></div>");
                 pokemonData.push ({
                     pokedex_id: pokedex_id,
@@ -82,12 +86,6 @@ $(document).ready(function() {
     }
 
 
-    $('#enemy_pokemon').on('click', function () {
-        show_my_condition();
-        show_enemy_condition();
-        $('#enemy_pokemon').hide();
-        $('#attack').show();
-    });
 
 
     $('#attack').on('click', function () {
@@ -97,8 +95,10 @@ $(document).ready(function() {
         $('#discription').append("<p><b>Your turn:</b> " + hit + hit2 + "</p>");
         $('#condition_enP').html("- " + damage);
         enemyblood -= damage;
-        setTimeout("$('#ani_pic').show();", 500);
-        setTimeout("$('#ani_pic').hide();", 3000);
+        setTimeout("$('#battle_my_icon').show();", 200);
+        setTimeout("$('#battle_my_icon').hide();", 1000);
+        setTimeout("$('#battle_enemy_icon').show();", 1200);
+        setTimeout("$('#battle_enemy_icon').hide();", 2000);
         if (enemyblood <= 0) {
             var say = function () {
                 $('#discription').append('<p><b>You win</b></p>');

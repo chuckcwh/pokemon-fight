@@ -3,9 +3,14 @@
 
 
 {% block title %}
+
+    <link type="text/css" href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/battle.css' %}">
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="{% static 'js/battle.js' %}"></script>
+
 {% endblock title %}
 
 {% block content %}
@@ -14,25 +19,43 @@
 
 
 {#battle system#}
-    <div id="bodylayout">
-        <h1>pokemon battle!</h1>
-        <button id="mychoice" class="btn btn-info">Choose my pokemon</button>
-        <button id="enemy_choice" class="btn btn-danger">Search in the wild</button>
+    <h1>pokemon battle!</h1>
 
+    <button id="my_choice" class="btn btn-info">Choose my pokemon</button>
+    <button id="enemy_choice" class="btn btn-danger">Search in the wild</button>
 
-        <div id="battle_window">
-            <div id="my_pokemon"></div>
-            <div id="my_poke_energy"></div>
-            <div id="animation"><img id="ani_pic" src="http://img1.wikia.nocookie.net/__cb20130616105344/pokemony/pl/images/8/8f/Ash_Pikachu_Thunder.png"></div>
-            <div id="enemy_poke_energy"></div>
-            <div id="enemy_pokemon"></div>
-            <div id="condition_myP"></div>
-            <div id="condition_enP"></div>
+{#battle window#}
+    <div class="battle_row">
+        <div class="col-md-2"></div>
+        <div id="my_pokemon" class="col-md-2"></div>
+        <div id="battle_window" class="col-md-4">
+            <div class="row poke_status">
+                <div  class="col-md-4">
+                    <div class="row">
+                        <div id="my_poke_energy"></div>
+                    </div>
+                    <div id="condition_myP"></div>
+                </div>
+                <div id="animation" class="col-md-4">
+                    <img id="battle_my_icon" class="ani" src="{% static "img/battle_my_icon.png" %}">
+                    <img id="battle_enemy_icon" class="ani" src="{% static "img/battle_enemy_icon.png" %}">
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div id="enemy_poke_energy"></div>
+                    </div>
+                     <div id="condition_enP"></div>
+
+                </div>
+
+            </div>
+
         </div>
-        <div id="discription"></div>
-
-        <button id="attack">attack</button>
+        <div id="enemy_pokemon" class="col-md-2"></div>
     </div>
+    <div id="discription" class=col-md-4""></div>
+
+    <button id="attack">attack</button>
 
 
 {#show my pokemons#}
