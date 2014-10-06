@@ -19,12 +19,20 @@ def pokemon(request):
     return render(request, 'pokemon.html')
 
 @login_required
-def pokemon_catch(request):
-    return render(request, 'pokemon_catch.html')
+def pokemon_new_game(request):
+    return render(request, 'pokemon_new_game.html')
+
+@login_required
+def pokemon_load_game(request):
+    return render(request, 'pokemon_load_game.html')
 
 @login_required
 def pokemon_battle(request):
     return render(request, 'pokemon_battle.html')
+
+@login_required
+def pokemon_lab(request):
+    return render(request, 'pokemon_lab.html')
 
 def faq(request):
     return render(request, 'faq.html')

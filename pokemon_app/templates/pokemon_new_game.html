@@ -1,0 +1,78 @@
+{% extends 'base_template.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    <link type="text/css" href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+{% endblock title %}
+
+
+{% block content %}
+    <div id="bodylayout">
+
+
+        <div class="row">
+{#            <button id="pokeOne" class="btn btn-info">Random One</button>#}
+            <div class="col-md-2">
+                <img id='dialog_oak' src="{% static 'img/Professor_Oak.png' %}">
+
+            </div>
+            <div class="col-md-8">
+                <div id="dialog2"><b>No problem!</b><p>I'll give you a pokemon for start. Good luck, <b>Ash!</b></p></div>
+                <div id='dialog'><b>Dr. Oat</b>, I want<p>a new adventure!</p></div>
+                <div id="team">
+                    <div id="sprites">
+                    </div>
+                    <div id="throw">
+                        <img src="{% static "img/throw_pokemon_ball.gif" %}">
+                    </div>
+                    <p id="throw_text"><i>Throw ~~ Poke Ball!</i></p>
+                    <br>
+                    <button id="save" class="btn btn-warning">Team Name Submit</button>
+                    <button id="start_battle" class="btn btn-warning">Let's start battle!</button>
+                </div>
+
+
+            </div>
+            <div class="col-md-2">
+                <img id='dialog_ppl' src="{% static 'img/ash.png' %}">
+            </div>
+        </div>
+
+        <div class="row" id="talk">
+{#            <div class="col-md-2"></div>#}
+{#            <div class="col-md-2">#}
+{##}
+{#            </div>#}
+
+{#            <div class="col-md-2"></div>#}
+        </div>
+
+
+{#        <div align="center">#}
+{#            <h1>New Game!</h1>#}
+{#        <div id="empty_up" class="row"></div>#}
+{#            <button id="pokeOne" class="btn btn-info">Random One</button>#}
+{#            <button id="pokeTeam" class="btn btn-info">Random Team</button>#}
+{#            <button id="pokemy" class="btn btn-info">My Fav Team</button>#}
+{##}
+
+{##}
+{#        </div>#}
+
+
+{#        <div id="footer">#}
+{#            <h3 id="all">Select Your Teams</h3>#}
+{#            <div id="your_pokeTeam"></div>#}
+{#            <div id="your_pokemons"></div>#}
+{#        </div>#}
+        <div align="right">
+            <a href="{% url 'pokemon_battle' %}">Start Battle!</a>
+        </div>
+    </div>
+
+{% endblock content %}
+
+

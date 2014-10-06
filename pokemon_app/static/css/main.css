@@ -21,6 +21,8 @@ body {
 
 #pokemon h1 {
     text-shadow: 2px 2px darkblue;
+    color: darkcyan;
+    font-family: Brush Script MT, sans-serif;
 }
 
 #bodylayout {
@@ -31,13 +33,48 @@ body {
 #team {
     display: none;
     margin: 20px;
+    margin-top: 100px;
     background-color: #80FF80;
     text-align: center;
     height:270px;
     padding-top: 10px;
-    margin-left: 50px;
-    margin-right: 50px;
     border-radius: 50px;
+}
+
+#empty_up {
+    height: 40px;
+}
+
+#dialog_oak {
+    margin-top: 150px;
+    display: none;
+}
+
+#dialog_ppl {
+    margin-top: 180px;
+}
+
+#dialog2 {
+    height: 220px;
+    width: 272px;
+    background-image: url('/static/img/dialog2.png');
+    background-size: contain;
+    padding-top: 30px;
+    padding-left: 35px;
+    font-size: 18px;
+    float: left;
+    display: none;
+}
+
+#dialog {
+    height: 192px;
+    width: 297px;
+    background-image: url('/static/img/dialog.png');
+    padding-top: 40px;
+    padding-left: 50px;
+    font-size: 24px;
+    float: right;
+    opacity: 0.2;
 }
 
 .pokebox {
@@ -61,12 +98,27 @@ body {
 
 #throw {
     display: none;
+}
+
+#throw_text {
+    display: none;
     font-size: 36px;
     color: lightblue;
     text-shadow: 2px 2px blue;
 }
 
+#save {
+    display: none;
+}
 
+#start_battle {
+    display: none;
+}
+
+#all_team{
+    text-align: center;
+    height: 220px;
+}
 
 #footer {
     text-align: center;

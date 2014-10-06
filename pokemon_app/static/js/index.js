@@ -9,22 +9,69 @@ var pokemonData = [];
         }
     );
 
-
+//New or Load game
     $('#load_game').on('click', function (){
-        window.location.href = "/pokemon_catch/";
-        $(document).ready(function(){
-            $('#pokeOne').append('<p>new_game</p>');
-        })
+        window.location.href = "/pokemon_load_game/";
     });
 
     $('#new_game').on('click', function () {
-        window.location.href = "/pokemon_catch/";
-        $(document).ready(function(){
-            $('#pokeOne').append('<p>new_game</p>');
-        })
+        window.location.href = "/pokemon_new_game/";
     });
 
 
+    //choose 1 pokemon in new game
+    $( "#dialog" ).mouseenter(function() {
+        $( this ).fadeTo("slow", 1);
+    });
+
+    $('#dialog').on('click', function () {
+        $('#dialog2').show();
+        $('#dialog_oak').show();
+        setTimeout("$('#dialog2').hide();", 2500);
+        setTimeout("$('#dialog').hide();", 2500);
+        setTimeout(chooseOneAni, 3000);
+    });
+
+    function chooseOneAni() {
+        $('#team').show();
+        $('#throw').show();
+        $('#throw_text').show();
+        setTimeout("$('#throw').hide();", 2500);
+        setTimeout("$('#throw_text').hide();", 2500);
+        setTimeout(chooseOne, 2700);
+        setTimeout("$('#save').show();", 2700);
+
+    }
+
+    function chooseOne() {
+        pokemonData = [];
+        $('#sprites').html("<p><input id='teamname' type='text' placeholder='Team Name'></input></p>");
+        var ranNumber = Math.floor(Math.random()*718 + 2);
+        $.ajax({
+            url: "http://pokeapi.co/api/v1/sprite/" + ranNumber + "/",
+            type: "GET",
+            dataType: "jsonp",
+            success: function(data) {
+                pokeResponse = data;
+                name = data.pokemon.name;
+                pokedex_id = data.id - 1;
+                image = data.image;
+                var spriteUrl = 'http://pokeapi.co/' + data.image;
+                $('#sprites').append("<div class='pokebox'><img class='pokemon' src=" +
+                    spriteUrl + "/><div class='name'>" + name + "</div><div class='id'>" +
+                    pokedex_id + "</div></div>");
+                pokemonData.push ({
+                    pokedex_id: pokedex_id,
+                    image: image,
+                    name: name
+                });
+            }
+        });
+    }
+
+    $('#start_battle').on('click', function(){
+        window.location.href = "/pokemon_battle/";
+    });
 
     //Show user's team
     $.ajax({
@@ -165,12 +212,14 @@ var pokemonData = [];
 
     //save pokemon(s) and team to database
     $('#save').on('click', function() {
+        $('#save').hide();
+        $('#start_battle').show();
         var teamName = $("#teamname").val();
         for (i=0;i<pokemonData.length;i++) {
             pokemonData[i].team = teamName;
 //            pokemonData[i].delay = i;
         }
-        $('#team').hide();
+//        $('#team').hide();
         pokemo = JSON.stringify(pokemonData);
         $.ajax({
             url: '/new_pokemon/',
@@ -184,7 +233,7 @@ var pokemonData = [];
                 console.log("ajax error")
             }
         });
-        setTimeout(addButton, 500);
+//        setTimeout(addButton, 500);
     });
 //    var addButton = function() {
 //        $('#your_pokeTeam').append("<button class='teambutton' value='" + teamId + "'>" + teamName +"</button>");
