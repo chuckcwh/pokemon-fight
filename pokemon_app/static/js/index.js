@@ -9,7 +9,7 @@ var pokemonData = [];
         }
     );
 
-//New or Load game
+    //New or Load game
     $('#load_game').on('click', function (){
         window.location.href = "/pokemon_load_game/";
     });
@@ -73,7 +73,7 @@ var pokemonData = [];
         window.location.href = "/pokemon_battle/";
     });
 
-//show all teams with their pokemons
+    //show all teams with their pokemons
     $.ajax({
         url: '/all_your_team/',
         type: "GET",
@@ -108,25 +108,6 @@ var pokemonData = [];
         $('#go_battle').html("<button class='battle_start btn btn-warning'>Let\'s battle!</button>");
         var teamName = $(this).val();
         localStorage.setItem("store_team", teamName);
-
-//        var teamIdData = {team_id: teamId};
-//        $.ajax({
-//            url: '/pokemon_of_team/',
-//            type: "POST",
-//            dataType: "json",
-//            data: JSON.stringify(teamIdData),
-//            success: function(data) {
-//                $('#your_pokemons').html("");
-//                for (i=0; i<data.length; i++) {
-//                    name = data[i].name;
-//                    pokedex_id = data[i].pokedex_id;
-//                    image = data[i].image;
-//                    var spriteUrl = 'http://pokeapi.co/' + image;
-//                    $('#your_pokemons').append("<div class='pokebox'><img class='f_pokemon' src=" + spriteUrl + "/><div class='name'>" + name + "</div><div class='id'>" +
-//                        pokedex_id + "</div></div>");
-//                }
-//            }
-//        });
     });
 
 
@@ -146,28 +127,7 @@ var pokemonData = [];
 
 
 
-    //Show team's pokemons of requested user
-//    $(document).on('click', '.teambutton', function(){
-//        var teamId = $(this).val();
-//        var teamIdData = {team_id: teamId};
-//        $.ajax({
-//            url: '/pokemon_of_team/',
-//            type: "POST",
-//            dataType: "json",
-//            data: JSON.stringify(teamIdData),
-//            success: function(data) {
-//                $('#your_pokemons').html("");
-//                for (i=0; i<data.length; i++) {
-//                    name = data[i].name;
-//                    pokedex_id = data[i].pokedex_id;
-//                    image = data[i].image;
-//                    var spriteUrl = 'http://pokeapi.co/' + image;
-//                    $('#your_pokemons').append("<div class='pokebox'><img class='f_pokemon' src=" + spriteUrl + "/><div class='name'>" + name + "</div><div class='id'>" +
-//                        pokedex_id + "</div></div>");
-//                }
-//            }
-//        });
-//    });
+
 
     //Random choose one pokemon
     $('#pokeOne').on('click', function() {

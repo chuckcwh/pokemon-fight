@@ -1,7 +1,7 @@
 $(document).ready(function() {
 var myblood = 100;
 var enemyblood = 100;
-var ene_name;
+var enemy_pokemonData;
     //show the pokemon team
 //    var teamId = store_number;
 //    var teamIdData = {team_id: teamId};
@@ -29,6 +29,7 @@ var ene_name;
 
     //battle system - my pokemon
     $(document).on('click', '.pokebox', function(){
+        $('#my_choice').show();
         $('#my_choice').append("<p><i>Are you sure?</i></p><button id='yes'>Yes</button>" +
             "<button id='no'>No</button>");
         pokeName = $(this).find('div.name').text();
@@ -47,8 +48,9 @@ var ene_name;
     $(document).on('click', '#yes', function(){
         $('#my_choice').html("please select a pokemon");
         $('#my_choice').hide();
-
-
+        if ($('#enemy_choice').is(":visible") != true){
+            $('#attack').show();
+        }
     });
 
     //battle system - enemy pokemon
@@ -56,8 +58,12 @@ var ene_name;
         show_enemy_condition();
         $('#discription').html("");
         $('#enemy_choice').hide();
-        $('#my_choice').hide();
-        $('#attack').show();
+        if ($('#my_choice').is(":visible") != true){
+            if ($('#battle_team').is(":visible") != true) {
+                $('#attack').show();
+            }
+        }
+
         pokemonData = [];
         $('#enemy_pokemon').html("");
         var ranNumber = Math.floor(Math.random()*718 + 2);
@@ -67,17 +73,18 @@ var ene_name;
             dataType: "jsonp",
             success: function(data) {
                 pokeResponse = data;
-                ene_name = data.pokemon.name;
+                name = data.pokemon.name;
                 pokedex_id = data.id - 1;
                 image = data.image;
-                var spriteUrl = 'http://pokeapi.co/' + data.image;
+                var spriteUrl = 'http://pokeapi.co/' + image;
                 $('#enemy_pokemon').append("<div id='battle_mode' class='pokebox'><img class='pokemon' src=" +
-                    spriteUrl + "/><div class='name'>" + ene_name + "</div></div>");
-                pokemonData.push ({
+                    spriteUrl + "/><div class='name'>" + name + "</div></div>");
+                enemy_pokemonData= {
                     pokedex_id: pokedex_id,
                     image: image,
-                    name: name
-                });
+                    name: name,
+                    team: teamName
+                };
             }
         });
     });
@@ -199,23 +206,15 @@ var ene_name;
         after_clean();
         $('#after_battle_win').hide();
         $('#discription').html("<h2>You just catched a new pokemon!</h2>");
-
-        for (i=0;i<pokemonData.length;i++) {
-            pokemonData[i].team = teamName;
-//            pokemonData[i].delay = i;
-        }
-//        $('#team').hide();
-        pokemo = JSON.stringify(pokemonData);
+        pokemo = JSON.stringify(enemy_pokemonData);
+        var spriteUrl = 'http://pokeapi.co/' + enemy_pokemonData['image'];
+        $('#battle_team').append("<div class='pokebox'><img class='f_pokemon' src=" + spriteUrl + "/><div class='name'>" + enemy_pokemonData['name'] + "</div><div class='pokedex_id'>" +
+                    enemy_pokemonData['pokedex_id'] + "</div></div>");
         $.ajax({
-            url: '/new_pokemon/',
+            url: '/beat_and_catch/',
             type: 'POST',
             dataType: 'json',
-            data: pokemo,
-            success: function(data) {
-                console.log("ajax success");
-                $('#enemy_pokemon').append("<div id='battle_mode' class='pokebox'><img class='pokemon' src=" +
-                    spriteUrl + "/><div class='name'>" + name + "</div></div>");
-            }
+            data: pokemo
         });
     });
 });

@@ -31,6 +31,10 @@ def pokemon_battle(request):
     return render(request, 'pokemon_battle.html')
 
 @login_required
+def pokemon_surprise(request):
+    return render(request, 'pokemon_surprise.html')
+
+@login_required
 def pokemon_lab(request):
     return render(request, 'pokemon_lab.html')
 
@@ -94,7 +98,10 @@ def all_your_team(request):
 @csrf_exempt
 def pokemon_of_team(request):
     data = json.loads(request.body)
+    print data['team_name']
+
     team = Team.objects.get(name=data['team_name'])
+    print team.id
     team_id = team.id
     pokemon_objects = Pokemon.objects.filter(team=team_id)
     collection = []
@@ -134,6 +141,23 @@ def new_pokemon(request):
     return HttpResponse(response,
                         content_type='application/json')
 
+@csrf_exempt
+def beat_and_catch(request):
+    pokemonadd = None
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        team = Team.objects.get(name=data['team'])
+        pokemon = Pokemon.objects.create(
+            name=data['name'],
+            image=data['image'],
+            pokedex_id=data['pokedex_id'],
+            team=team
+        )
+        pokemonadd = serializers.serialize('json', [pokemon])
+    response = pokemonadd
+    return HttpResponse(response,
+                        content_type='application/json')
+
 def remove_team(request, team_name):
     item = Team.objects.get(name=team_name)
     item.delete()
@@ -143,7 +167,6 @@ def remove_team(request, team_name):
 
 def my_battle_pokemon(request):
     choose = None
-    print "hell ya"
     if request.method == 'POST':
         data = json.loads(request.body)
         print data
