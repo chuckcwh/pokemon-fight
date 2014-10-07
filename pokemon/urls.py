@@ -29,7 +29,7 @@ urlpatterns = patterns('',
     url(r'^pokemon_of_team/$', 'pokemon_app.views.pokemon_of_team', name='pokemon_of_team'),
     url(r'^new_pokemon/$', 'pokemon_app.views.new_pokemon', name='new_pokemon'),
     url(r'^remove_team/$', 'pokemon_app.views.remove_team', name='remove_team'),
-    url(r'^pokemon_data_dump/$', 'pokemon_app.views.pokemon_data_dump', name='pokemon_data_dump'),
+    # url(r'^pokemon_data_dump/$', 'pokemon_app.views.pokemon_data_dump', name='pokemon_data_dump'),
     url(r'^my_battle_pokemon/$', 'pokemon_app.views.my_battle_pokemon', name='my_battle_pokemon'),
     # url(r'^enemy_pokemon/$', 'pokemon_app.views.enemy_pokemon', name='enemy_pokemon'),
 

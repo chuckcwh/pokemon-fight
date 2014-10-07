@@ -9,6 +9,13 @@ body {
     height: 200px;
 }
 
+.battle_team_row {
+    text-align: center;
+    width: 100%;
+    clear: both;
+    height: 100px;
+}
+
 .row {
     height: 100%;
 }
@@ -76,5 +83,13 @@ body {
 }
 
 #attack {
+    display: none;
+}
+
+#after_battle_win {
+    display: none;
+}
+
+#after_battle_lose {
     display: none;
 }

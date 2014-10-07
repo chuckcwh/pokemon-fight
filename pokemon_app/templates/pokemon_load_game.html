@@ -15,16 +15,17 @@
             <div class="col-md-1"></div>
             <div id="all_team" class="col-md-9">
                 <h3 id="all">Select Your Team</h3>
-                <div id="your_pokeTeam"></div>
-                <div id="your_pokemons"></div>
+                <div id="team_show"></div>
+
             </div>
+
+
+
             <div class="col-md-2">
                 <img id='dialog_ppl' src="{% static 'img/ash.png' %}">
             </div>
         </div>
-        <div align="right">
-            <a href="{% url 'pokemon_battle' %}">Start Battle!</a>
-        </div>
+        <div id="go_battle" align="right"></div>
     </div>
 
 {% endblock content %}

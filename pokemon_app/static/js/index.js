@@ -69,9 +69,66 @@ var pokemonData = [];
         });
     }
 
-    $('#start_battle').on('click', function(){
+    $(document).on('click', '.battle_start', function(){
         window.location.href = "/pokemon_battle/";
     });
+
+//show all teams with their pokemons
+    $.ajax({
+        url: '/all_your_team/',
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $('#team_show').append("<table><tbody class='row_show'>" +
+                "</tbody></table>");
+            for (i=0; i<data.length; i++) {
+                teamName = data[i].name;
+                teamId = data[i].id;
+                $('.row_show').append("<tr>" +
+                    "<td><button class='teambutton btn btn-success' value='" + teamName + "'>" + teamName +"</button></td>" +
+                    "<td id='team" + i + "'></td>" +
+                    "</tr>"
+                );
+                for (x=0; x<data[i].pokemons.length; x++) {
+                    pokeName = data[i].pokemons[x].name;
+                    pokeImage = data[i].pokemons[x].image;
+                    pokeDex_id = data[i].pokemons[x].pokedex_id;
+                    var spriteUrl = 'http://pokeapi.co/' + pokeImage;
+                    var teamTD = "#team" + i;
+                    $(teamTD).append("<div class='pokebox'><img class='f_pokemon' src=" + spriteUrl + "/><div class='name'>" + pokeName + "</div><div class='id'>" +
+                        pokeDex_id + "</div></div>");
+                }
+            }
+        }
+    });
+
+
+    //Show team's pokemons of requested user
+    $(document).on('click', '.teambutton', function(){
+        $('#go_battle').html("<button class='battle_start btn btn-warning'>Let\'s battle!</button>");
+        var teamName = $(this).val();
+        localStorage.setItem("store_team", teamName);
+
+//        var teamIdData = {team_id: teamId};
+//        $.ajax({
+//            url: '/pokemon_of_team/',
+//            type: "POST",
+//            dataType: "json",
+//            data: JSON.stringify(teamIdData),
+//            success: function(data) {
+//                $('#your_pokemons').html("");
+//                for (i=0; i<data.length; i++) {
+//                    name = data[i].name;
+//                    pokedex_id = data[i].pokedex_id;
+//                    image = data[i].image;
+//                    var spriteUrl = 'http://pokeapi.co/' + image;
+//                    $('#your_pokemons').append("<div class='pokebox'><img class='f_pokemon' src=" + spriteUrl + "/><div class='name'>" + name + "</div><div class='id'>" +
+//                        pokedex_id + "</div></div>");
+//                }
+//            }
+//        });
+    });
+
 
     //Show user's team
     $.ajax({
@@ -90,27 +147,27 @@ var pokemonData = [];
 
 
     //Show team's pokemons of requested user
-    $(document).on('click', '.teambutton', function(){
-        var teamId = $(this).val();
-        var teamIdData = {team_id: teamId};
-        $.ajax({
-            url: '/pokemon_of_team/',
-            type: "POST",
-            dataType: "json",
-            data: JSON.stringify(teamIdData),
-            success: function(data) {
-                $('#your_pokemons').html("");
-                for (i=0; i<data.length; i++) {
-                    name = data[i].name;
-                    pokedex_id = data[i].pokedex_id;
-                    image = data[i].image;
-                    var spriteUrl = 'http://pokeapi.co/' + image;
-                    $('#your_pokemons').append("<div class='pokebox'><img class='f_pokemon' src=" + spriteUrl + "/><div class='name'>" + name + "</div><div class='id'>" +
-                        pokedex_id + "</div></div>");
-                }
-            }
-        });
-    });
+//    $(document).on('click', '.teambutton', function(){
+//        var teamId = $(this).val();
+//        var teamIdData = {team_id: teamId};
+//        $.ajax({
+//            url: '/pokemon_of_team/',
+//            type: "POST",
+//            dataType: "json",
+//            data: JSON.stringify(teamIdData),
+//            success: function(data) {
+//                $('#your_pokemons').html("");
+//                for (i=0; i<data.length; i++) {
+//                    name = data[i].name;
+//                    pokedex_id = data[i].pokedex_id;
+//                    image = data[i].image;
+//                    var spriteUrl = 'http://pokeapi.co/' + image;
+//                    $('#your_pokemons').append("<div class='pokebox'><img class='f_pokemon' src=" + spriteUrl + "/><div class='name'>" + name + "</div><div class='id'>" +
+//                        pokedex_id + "</div></div>");
+//                }
+//            }
+//        });
+//    });
 
     //Random choose one pokemon
     $('#pokeOne').on('click', function() {
@@ -210,11 +267,12 @@ var pokemonData = [];
         }
     });
 
-    //save pokemon(s) and team to database
-    $('#save').on('click', function() {
-        $('#save').hide();
-        $('#start_battle').show();
+    //save new team (with one pokemon) to database
+    $('#save_new_team').on('click', function() {
+        $('#save_new_team').hide();
+        $('.start_battle').show();
         var teamName = $("#teamname").val();
+        localStorage.setItem("store_team", teamName);
         for (i=0;i<pokemonData.length;i++) {
             pokemonData[i].team = teamName;
 //            pokemonData[i].delay = i;
@@ -225,15 +283,8 @@ var pokemonData = [];
             url: '/new_pokemon/',
             type: 'POST',
             dataType: 'json',
-            data: pokemo,
-            success: function (response) {
-                console.log("ajax success");
-            },
-            error: function (response) {
-                console.log("ajax error")
-            }
+            data: pokemo
         });
-//        setTimeout(addButton, 500);
     });
 //    var addButton = function() {
 //        $('#your_pokeTeam').append("<button class='teambutton' value='" + teamId + "'>" + teamName +"</button>");
@@ -242,10 +293,10 @@ var pokemonData = [];
 //    for
 //    $('#deletebox').html("<option class='teamExisted' value=")
 
-    $('#deletecheck').on('click', function() {
-        var deleteTeam = $("#delectbox").val();
-        console.log(deleteTeam);
-    });
+//    $('#deletecheck').on('click', function() {
+//        var deleteTeam = $("#delectbox").val();
+//        console.log(deleteTeam);
+//    });
 
 
 });

@@ -59,13 +59,31 @@ def register(request):
         'form': form,
     })
 
+def user_team_pokemon(request):
+    collection = []
+    team_objects = Team.objects.filter(user = request.user)
+
+    return HttpResponse(
+        json.dumps(collection),
+        content_type='application.json'
+    )
+
 def all_your_team(request):
     team_objects = Team.objects.filter(user = request.user)
     collection = []
     for team in team_objects:
+        collection_team = []
+        pokemon_objects = Pokemon.objects.filter(team=team)
+        for pokemon in pokemon_objects:
+            collection_team.append({
+                'name': pokemon.name,
+                'image': pokemon.image,
+                'pokedex_id': pokemon.pokedex_id,
+            })
         collection.append({
             'name': team.name,
-            'id': team.id
+            'id': team.id,
+            'pokemons': collection_team,
         })
 
     return HttpResponse(
@@ -76,10 +94,13 @@ def all_your_team(request):
 @csrf_exempt
 def pokemon_of_team(request):
     data = json.loads(request.body)
-    pokemon_objects = Pokemon.objects.filter(team=data['team_id'])
+    team = Team.objects.get(name=data['team_name'])
+    team_id = team.id
+    pokemon_objects = Pokemon.objects.filter(team=team_id)
     collection = []
     for pokemon in pokemon_objects:
         collection.append({
+            'id': pokemon.id,
             'name': pokemon.name,
             'image': pokemon.image,
             'pokedex_id': pokemon.pokedex_id,
@@ -121,14 +142,22 @@ def remove_team(request, team_name):
     # return redirect("home")
 
 def my_battle_pokemon(request):
-    pokemon = Pokemon.objects.get(id=28)
-    my_choose = {
-        'name': pokemon.name,
-        'image': pokemon.image,
-        'pokedex_id': pokemon.pokedex_id,
-    }
+    choose = None
+    print "hell ya"
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        print data
+        pokemon = Pokemon.objects.get(name=data)
+        my_choose = {
+            'id': pokemon.id,
+            'name': pokemon.name,
+            'image': pokemon.image,
+            'pokedex_id': pokemon.pokedex_id,
+        }
+        choose = my_choose
+
     return HttpResponse(
-                json.dumps(my_choose),
+                json.dumps(choose),
                 content_type='application.json'
     )
 
@@ -145,7 +174,7 @@ def my_battle_pokemon(request):
 #     )
 
 
-def pokemon_data_dump(request):
-    pokemon = Pokemon.objects.all()
-    data = json.dumps('json', pokemon)
-    return HttpResponse(data, content_type='application/json')
+# def pokemon_data_dump(request):
+#     pokemon = Pokemon.objects.all()
+#     data = json.dumps('json', pokemon)
+#     return HttpResponse(data, content_type='application/json')

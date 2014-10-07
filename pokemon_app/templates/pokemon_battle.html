@@ -21,8 +21,6 @@
 {#battle system#}
     <h1>pokemon battle!</h1>
 
-    <button id="my_choice" class="btn btn-info">Choose my pokemon</button>
-    <button id="enemy_choice" class="btn btn-danger">Search in the wild</button>
 
 {#battle window#}
     <div class="battle_row">
@@ -56,13 +54,24 @@
     <div id="discription" class=col-md-4""></div>
 
     <button id="attack">attack</button>
+    <div id="after_battle_win">
+        <p>Yeah! Catch the pokemon?</p>
+        <button id="catch_yes">Sure!</button>
+        <button id="catch_no">I don't like it...</button>
+    </div>
+    <button id="after_battle_lose">lol ...try again?</button>
 
 
 {#show my pokemons#}
-    <div id="footer">
-        <h3 id="all">Select Your Teams</h3>
-        <div id="your_pokeTeam"></div>
-        <div id="your_pokemons"></div>
+    <h3 id="all">Team</h3>
+    <div class="battle_team_row">
+        <div class="col-md-3">
+                <div id="my_choice">Please select your pokemons</div>
+        </div>
+        <div id="battle_team" class="col-md-6"></div>
+        <div class="col-md-3">
+                <button id="enemy_choice" class="btn btn-danger">Search in the wild</button>
+        </div>
     </div>
 
 {#link back#}
