@@ -78,7 +78,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'chuckcwh@gmail.com'
+# EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASSWORD']
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = 'chuckcwh@gmail.com'
 
 LOGIN_REDIRECT_URL = 'profile'
 LOGIN_URL = 'login'
