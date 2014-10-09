@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
@@ -28,4 +29,8 @@ urlpatterns = patterns('',
     url(r'^pokemon_data_dump/$', 'pokemon_app.views.pokemon_data_dump', name='pokemon_data_dump'),
 
 
+)
+
+urlpatterns += patterns('',
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 )
