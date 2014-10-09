@@ -26,12 +26,15 @@ urlpatterns = patterns('',
     url(r'^pokemon_battle/$', 'pokemon_app.views.pokemon_battle', name='pokemon_battle'),
     url(r'^pokemon_surprise/$', 'pokemon_app.views.pokemon_surprise', name='pokemon_surprise'),
     url(r'^pokemon_lab/$', 'pokemon_app.views.pokemon_lab', name='pokemon_lab'),
+
+    # ajax call
+    url(r'^poke_lab_data/$', 'pokemon_app.views.poke_lab_data', name='poke_lab_data'),
     url(r'^all_your_team/$', 'pokemon_app.views.all_your_team', name='all_your_team'),
     url(r'^pokemon_of_team/$', 'pokemon_app.views.pokemon_of_team', name='pokemon_of_team'),
     url(r'^new_pokemon/$', 'pokemon_app.views.new_pokemon', name='new_pokemon'),
-    url(r'^remove_team/$', 'pokemon_app.views.remove_team', name='remove_team'),
-    # url(r'^pokemon_data_dump/$', 'pokemon_app.views.pokemon_data_dump', name='pokemon_data_dump'),
+    url(r'^delete_team/$', 'pokemon_app.views.delete_team', name='delete_team'),
+    url(r'^delete_pokemon/$', 'pokemon_app.views.delete_pokemon', name='delete_pokemon'),
     url(r'^my_battle_pokemon/$', 'pokemon_app.views.my_battle_pokemon', name='my_battle_pokemon'),
     url(r'^beat_and_catch/$', 'pokemon_app.views.beat_and_catch', name='beat_and_catch'),
-
+    url(r'^team_for_delete/$', 'pokemon_app.views.team_for_delete', name='team_for_delete'),
 )

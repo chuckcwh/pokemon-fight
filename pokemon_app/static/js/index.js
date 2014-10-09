@@ -2,24 +2,36 @@ $(document).ready(function(){
 var pokeResponse, pokemon = {};
 var pokemonData = [];
 
-    $( ".home_pic" ).hover(function() {
+
+    $( ".home_img" ).hover(function() {
         $( this ).fadeTo("slow", 1);
         }, function() {
         $( this ).fadeTo( "slow" , 0.2);
         }
     );
 
+    $("#home_pokemon").on('click', function() {
+        window.location.href = "/pokemon/";
+    });
+    $("#home_snake").on('click', function() {
+        window.location.href = "#";
+    });
+    $("#home_paint").on('click', function() {
+        window.location.href = "#";
+    });
     //New or Load game
     $('#load_game').on('click', function (){
         window.location.href = "/pokemon_load_game/";
+    });
+    $('#gotoNewGame').on('click', function (){
+        window.location.href = "/pokemon_new_game/";
     });
 
     $('#new_game').on('click', function () {
         window.location.href = "/pokemon_new_game/";
     });
 
-
-    //choose 1 pokemon in new game
+    //new game: choose 1 pokemon in new game
     $( "#dialog" ).mouseenter(function() {
         $( this ).fadeTo("slow", 1);
     });
@@ -34,14 +46,17 @@ var pokemonData = [];
 
     function chooseOneAni() {
         $('#team').show();
+        $('#save_new_team').hide();
+        $('.battle_start').hide();
         $('#throw').show();
         $('#throw_text').show();
         setTimeout("$('#throw').hide();", 2500);
         setTimeout("$('#throw_text').hide();", 2500);
         setTimeout(chooseOne, 2700);
-        setTimeout("$('#save').show();", 2700);
+        setTimeout("$('#save_new_team').show();", 2700);
 
     }
+
 
     function chooseOne() {
         pokemonData = [];
@@ -69,11 +84,34 @@ var pokemonData = [];
         });
     }
 
+//new game: save new team (with one pokemon) to database
+    $('#save_new_team').on('click', function() {
+        $('#save_new_team').hide();
+        $('.battle_start').show();
+        var teamName = $("#teamname").val();
+        $('#teamname').css('visibility', 'hidden');
+        localStorage.setItem("store_team", teamName);
+        for (i=0;i<pokemonData.length;i++) {
+            pokemonData[i].team = teamName;
+//            pokemonData[i].delay = i;
+        }
+//        $('#team').hide();
+        pokemo = JSON.stringify(pokemonData);
+        $.ajax({
+            url: '/new_pokemon/',
+            type: 'POST',
+            dataType: 'json',
+            data: pokemo
+        });
+    });
+
+//new game & load game: battle start
     $(document).on('click', '.battle_start', function(){
         window.location.href = "/pokemon_battle/";
     });
 
-    //show all teams with their pokemons
+
+//load game: show all teams with their pokemons
     $.ajax({
         url: '/all_your_team/',
         type: "GET",
@@ -85,7 +123,7 @@ var pokemonData = [];
                 teamName = data[i].name;
                 teamId = data[i].id;
                 $('.row_show').append("<tr>" +
-                    "<td><button class='teambutton btn btn-success' value='" + teamName + "'>" + teamName +"</button></td>" +
+                    "<td class='button_position'><button class='teambutton btn btn-success' value='" + teamName + "'>" + teamName +"</button></td>" +
                     "<td id='team" + i + "'></td>" +
                     "</tr>"
                 );
@@ -103,149 +141,131 @@ var pokemonData = [];
     });
 
 
-    //Show team's pokemons of requested user
+    //new game & load game: check the team and go to battle
     $(document).on('click', '.teambutton', function(){
-        $('#go_battle').html("<button class='battle_start btn btn-warning'>Let\'s battle!</button>");
+        $('.battle_start').show();
+        $('.battle_start').html("<button class='battle_start btn btn-warning'>Let\'s battle!</button>");
         var teamName = $(this).val();
         localStorage.setItem("store_team", teamName);
     });
 
 
-    //Show user's team
-    $.ajax({
-        url: '/all_your_team/',
-        type: "GET",
-        dataType: "json",
-        success: function(data) {
-            for (i=0; i<data.length; i++) {
-                team = data[i].name;
-                teamId = data[i].id;
-                $('#your_pokeTeam').append("<button class='teambutton btn btn-success' value='" + teamId + "'>" + team +"</button>");
-            }
-        }
-    });
+//    //Show user's team
+//    $.ajax({
+//        url: '/all_your_team/',
+//        type: "GET",
+//        dataType: "json",
+//        success: function(data) {
+//            for (i=0; i<data.length; i++) {
+//                team = data[i].name;
+//                teamId = data[i].id;
+//                $('#your_pokeTeam').append("<button class='teambutton btn btn-success' value='" + teamId + "'>" + team +"</button>");
+//            }
+//        }
+//    });
 
 
 
 
 
-    //Random choose one pokemon
-    $('#pokeOne').on('click', function() {
-        $('#sprites').html("");
-        $('#team').show();
-        $('#throw').show();
-        setTimeout("$('#throw').hide();", 2800);
-        setTimeout(pickOne, 3000);
-    });
+//    //Random choose one pokemon
+//    $('#pokeOne').on('click', function() {
+//        $('#sprites').html("");
+//        $('#throw').show();
+//        setTimeout("$('#throw').hide();", 2800);
+//        setTimeout(pickOne, 3000);
+//    });
 
-    var pickOne = function (){
-        pokemonData = [];
-        $('#sprites').html("<p><input id='teamname' type='text' placeholder='Team Name'></input></p>");
-        var ranNumber = Math.floor(Math.random()*718 + 2);
-        $.ajax({
-            url: "http://pokeapi.co/api/v1/sprite/" + ranNumber + "/",
-            type: "GET",
-            dataType: "jsonp",
-            success: function(data) {
-                pokeResponse = data;
-                name = data.pokemon.name;
-                pokedex_id = data.id - 1;
-                image = data.image;
-                var spriteUrl = 'http://pokeapi.co/' + data.image;
-                $('#sprites').append("<div class='pokebox'><img class='pokemon' src=" +
-                    spriteUrl + "/><div class='name'>" + name + "</div><div class='id'>" +
-                    pokedex_id + "</div></div>");
-                pokemonData.push ({
-                    pokedex_id: pokedex_id,
-                    image: image,
-                    name: name
-                });
-            }
-        });
-    };
-
+//    var pickOne = function (){
+//        pokemonData = [];
+//        $('#sprites').html("<p><input id='teamname' type='text' placeholder='Team Name'></input></p>");
+//        var ranNumber = Math.floor(Math.random()*718 + 2);
+//        $.ajax({
+//            url: "http://pokeapi.co/api/v1/sprite/" + ranNumber + "/",
+//            type: "GET",
+//            dataType: "jsonp",
+//            success: function(data) {
+//                pokeResponse = data;
+//                name = data.pokemon.name;
+//                pokedex_id = data.id - 1;
+//                image = data.image;
+//                var spriteUrl = 'http://pokeapi.co/' + data.image;
+//                $('#sprites').append("<div class='pokebox'><img class='pokemon' src=" +
+//                    spriteUrl + "/><div class='name'>" + name + "</div><div class='id'>" +
+//                    pokedex_id + "</div></div>");
+//                pokemonData.push ({
+//                    pokedex_id: pokedex_id,
+//                    image: image,
+//                    name: name
+//                });
+//            }
+//        });
+//    };
 
 
 
-    //Random choose 6 pokemon
-    $('#pokeTeam').on('click', function(){
-        $('#sprites').html("");
-        $('#team').show();
-        $('#throw').show();
-        setTimeout("$('#throw').hide();", 2800);
-        setTimeout(pickTeam, 3000);
-    });
 
-    var pickTeam = function (){
-        pokemonData = [];
-        $('#sprites').html("<p><input id='teamname' type='text' placeholder='Team Name'></input></p>");
-        for (i=0;i<6;i++) {
-            var ranNumber = Math.floor(Math.random()*718 + 2);
-            $.ajax({
-                url: "http://pokeapi.co/api/v1/sprite/" + ranNumber + "/",
-                type: "GET",
-                dataType: "jsonp",
-                    success: function(data) {
-                    pokeResponse = data;
-                    team = "My_team";
-                    name = data.pokemon.name;
-                    pokedex_id = data.id - 1;
-                    image = data.image;
-                    var spriteUrl = 'http://pokeapi.co/' + data.image;
-                    $('#sprites').append("<div class='pokebox'><img class='pokemon' src=" + spriteUrl
-                        + "/><div class='name'>" + name + "</div><div class='id'>" + pokedex_id
-                        + "</div></div>");
-                    pokemonData.push ({
-                        pokedex_id: pokedex_id,
-                        image: image,
-                        name: name
-                    });
-                }
-            });
-        }
-    };
+//    //Random choose 6 pokemon
+//    $('#pokeTeam').on('click', function(){
+//        $('#sprites').html("");
+//        $('#team').show();
+//        $('#throw').show();
+//        setTimeout("$('#throw').hide();", 2800);
+//        setTimeout(pickTeam, 3000);
+//    });
+//
+//    var pickTeam = function (){
+//        pokemonData = [];
+//        $('#sprites').html("<p><input id='teamname' type='text' placeholder='Team Name'></input></p>");
+//        for (i=0;i<6;i++) {
+//            var ranNumber = Math.floor(Math.random()*718 + 2);
+//            $.ajax({
+//                url: "http://pokeapi.co/api/v1/sprite/" + ranNumber + "/",
+//                type: "GET",
+//                dataType: "jsonp",
+//                    success: function(data) {
+//                    pokeResponse = data;
+//                    team = "My_team";
+//                    name = data.pokemon.name;
+//                    pokedex_id = data.id - 1;
+//                    image = data.image;
+//                    var spriteUrl = 'http://pokeapi.co/' + data.image;
+//                    $('#sprites').append("<div class='pokebox'><img class='pokemon' src=" + spriteUrl
+//                        + "/><div class='name'>" + name + "</div><div class='id'>" + pokedex_id
+//                        + "</div></div>");
+//                    pokemonData.push ({
+//                        pokedex_id: pokedex_id,
+//                        image: image,
+//                        name: name
+//                    });
+//                }
+//            });
+//        }
+//    };
 
 
-    //Shows my favorite team
-    $('#pokemy').on('click', function() {
-        $('#sprites').html("");
-        for (i=0;i<6;i++) {
-            myPokemon = [3, 16, 408, 606, 89, 107];
-            $.ajax({
-                url: "http://pokeapi.co/api/v1/sprite/" + myPokemon[i] + "/",
-                type: "GET",
-                dataType: "jsonp",
-                success: function(data) {
-                    pokeResponse = data;
-                    pokemon.name = data.pokemon.name;
-                    pokemon.id = data.id - 1;
-                    pokemon.image = data.image;
-                    var spriteUrl = 'http://pokeapi.co/' + data.image;
-                    $('#sprites').append("<div class='pokebox'><img class='pokemon' src=" + spriteUrl + "/><div class='name'>" + pokemon.name + "</div><div class='id'>" + pokemon.id + "</div></div>");
-                }
-            });
-        }
-    });
+//    //Shows my favorite team
+//    $('#pokemy').on('click', function() {
+//        $('#sprites').html("");
+//        for (i=0;i<6;i++) {
+//            myPokemon = [3, 16, 408, 606, 89, 107];
+//            $.ajax({
+//                url: "http://pokeapi.co/api/v1/sprite/" + myPokemon[i] + "/",
+//                type: "GET",
+//                dataType: "jsonp",
+//                success: function(data) {
+//                    pokeResponse = data;
+//                    pokemon.name = data.pokemon.name;
+//                    pokemon.id = data.id - 1;
+//                    pokemon.image = data.image;
+//                    var spriteUrl = 'http://pokeapi.co/' + data.image;
+//                    $('#sprites').append("<div class='pokebox'><img class='pokemon' src=" + spriteUrl + "/><div class='name'>" + pokemon.name + "</div><div class='id'>" + pokemon.id + "</div></div>");
+//                }
+//            });
+//        }
+//    });
 
-    //save new team (with one pokemon) to database
-    $('#save_new_team').on('click', function() {
-        $('#save_new_team').hide();
-        $('.start_battle').show();
-        var teamName = $("#teamname").val();
-        localStorage.setItem("store_team", teamName);
-        for (i=0;i<pokemonData.length;i++) {
-            pokemonData[i].team = teamName;
-//            pokemonData[i].delay = i;
-        }
-//        $('#team').hide();
-        pokemo = JSON.stringify(pokemonData);
-        $.ajax({
-            url: '/new_pokemon/',
-            type: 'POST',
-            dataType: 'json',
-            data: pokemo
-        });
-    });
+
 //    var addButton = function() {
 //        $('#your_pokeTeam').append("<button class='teambutton' value='" + teamId + "'>" + teamName +"</button>");
 //    };

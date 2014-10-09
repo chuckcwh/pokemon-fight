@@ -6,22 +6,38 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="{% static 'js/index.js' %}"></script>
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 {% endblock title %}
 
 {% block content %}
-    <h1 align="center">Arcade Game</h1>
-    <div style="display:inline;">
-        <a class="home_pic" href="{% url 'pokemon' %}"><img src="{% static "img/home_pokemon.jpg" %}"></a>
+    <div id="home_wall">
+        <h1 align="center">Arcade Game</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="home_img" id="home_pokemon"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <div id="home_logo"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="home_img" id="home_snake"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <div id="home_memory"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="home_img" id="home_paint"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <div id="home_hanoi"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div style="display:inline;">
-        <a class="home_pic" href="{% url 'home' %}"><img src="{% static "img/home_snake.jpg" %}"></a>
-    </div>
-
-    <div style="display:inline;">
-        <a class="home_pic" href="{% url 'home' %}"><img src="{% static "img/home_paint.jpg" %}"></a>
-    </div>
-
-
-    <a href="{% url 'pokemon_lab' %}">Lab</a>
 {% endblock content %}

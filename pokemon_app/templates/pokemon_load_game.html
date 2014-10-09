@@ -12,10 +12,17 @@
 {% block content %}
     <div id="bodylayout">
         <div class="row">
-            <div class="col-md-1"></div>
-            <div id="all_team" class="col-md-9">
-                <h3 id="all">Select Your Team</h3>
-                <div id="team_show"></div>
+            <div class="col-md-2">
+                <div id="pikachu_icon"></div>
+                <br>
+                <p style="color: orangered">Press Team Button!</p>
+                <br>
+                <div class="battle_start" align="center"></div>
+            </div>
+            <div id="all_team" class="col-md-8">
+                <h2 style="color: blue" id="all">Select Your Team</h2>
+                <p style="color: darkred">Max Member : <span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-user"> /team</span></p>
+                <div id="team_show" align="center"></div>
 
             </div>
 
@@ -23,9 +30,10 @@
 
             <div class="col-md-2">
                 <img id='dialog_ppl' src="{% static 'img/ash.png' %}">
+                <button class="btn btn-primary" id="gotoNewGame">Start New Team</button>
             </div>
         </div>
-        <div id="go_battle" align="right"></div>
+
     </div>
 
 {% endblock content %}

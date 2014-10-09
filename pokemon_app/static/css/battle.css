@@ -1,8 +1,10 @@
 body {
     text-align: center;
+    background-image: url('/static/img/battle_bg_grass.jpg');
+    color: #E3DFD6;
 }
 
-.battle_row {
+.row {
     text-align: center;
     width: 100%;
     clear: both;
@@ -20,8 +22,15 @@ body {
     height: 100%;
 }
 
+.f_pokemon:hover {
+    border: 3px solid deepskyblue;
+}
+
+#battle_sight {
+    height: 300px;
+}
+
 #battle_window {
-    border: 1px solid black;
     height: 200px;
     margin-left: auto;
     margin-right: auto;
@@ -33,21 +42,29 @@ body {
 }
 
 #my_poke_energy {
-    border: 1px solid black;
     display: inline-block;
-    margin-top:50px;
+    float: right;
     height: 30%;
+    width: 60px;
+    margin-top:50px;
 }
 
 #condition_myP {
-    border: 1px solid black;
-    display: inline-block;
+    color: red;
+    font-weight: bold;
+    font-size: 28px;
     float: left;
-    height: 15%;
+}
+
+#condition_enP {
+    color: red;
+    font-weight: bold;
+    font-size: 16px;
+    float: left;
+    display: inline-block
 }
 
 #animation {
-    border: 1px solid black;
     display: inline-block;
     margin-top:15px;
     height: 50%;
@@ -60,26 +77,62 @@ body {
 }
 
 #enemy_poke_energy {
-    border: 1px solid black;
     display: inline-block;
-    margin-top:50px;
     height: 30%;
+    width: 60px;
+    margin-top: 100px;
+}
+
+#enemy_pokemon {
+    display: inline-block;
+    width: 190px;
+}
+
+#my_pokemon {
+    position: relative;
+    margin-top: 48px;
+
+}
+
+#enemy_choice {
+    margin-top: 100px;
 }
 
 #condition_enP {
-    border: 1px solid black;
     display: inline-block;
     float: right;
     height: 15%;
 }
 
 #discription {
-    border: 1px solid black;
     height: 100px;
     width: 380px;
     bottom: 0;
     margin-left: auto;
     margin-right: auto;
+}
+
+#battle_team {
+    background-color: rgba(191, 135, 86, 0.6);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+#my_battle_mode {
+    background-color: transparent;
+    border: none;
+    border-radius: 0px;
+    width: 300px;
+    height: 300px;
+}
+
+#enemy_battle_mode {
+    background-color: transparent;
+    display: inline-block;
+    border: none;
+    border-radius: 0px;
+    width: 180px;
+    height: 180px;
 }
 
 #attack {
@@ -92,4 +145,12 @@ body {
 
 #after_battle_lose {
     display: none;
+}
+
+.botton_left_side {
+    margin-top: 70px;
+}
+
+.botton_right_side {
+    margin-top: 110px;
 }

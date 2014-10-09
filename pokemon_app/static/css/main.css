@@ -1,28 +1,95 @@
 body {
-    font-family: arial;
-    background: #FFF0F0;
+    font-family: 'Righteous', cursive;
+    background-image: url('/static/img/wood_texture.png');
 
 }
 
-.home_pic {
-    height: 300px;
-    width: 400px;
+.navbar.navbar-inverse{
+    background-image: url('/static/img/purty_wood.png');
+    border: 2px solid grey;
+    border-radius: 0px;
+}
+
+h1 {
+    font-family: 'Lobster', cursive;
+}
+/*.home_pic {*/
+    /*height: 300px;*/
+    /*width: 400px;*/
+    /*background-image: url('/static/img/home_pokemon.jpg');*/
+    /*opacity: 0.2;*/
+    /*margin: 20px;*/
+    /*background-size: cover;*/
+    /*background-repeat: no-repeat;*/
+    /*border-radius: 15px;*/
+/*}*/
+
+#home_pokemon {
     background-image: url('/static/img/home_pokemon.jpg');
-    opacity: 0.2;
-    margin: 20px;
 }
+#home_paint {
+    background-image: url('/static/img/home_paint.jpg');
+}
+#home_snake {
+    background-image: url('/static/img/home_snake.jpg');
+}
+#home_memory {
+    background-image: url('/static/img/under_construction.gif');
+    height: 200px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+#home_logo {
+    background-image: url('/static/img/c.gif');
+    height: 200px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+#home_hanoi {
+    background-image: url('/static/img/under_construction.gif');
+    height: 200px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.home_img{
+    height: 200px;
+    width: 100%;
+    text-align: center;
+    opacity: 0.2;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
 
 #pokemon {
     margin-top: -20px;
-    height: 580px;
-    background-size: contain;
+    height: 600px;
+    max-width: 100%;
     background-image: url('/static/img/pokemon.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #pokemon h1 {
-    text-shadow: 2px 2px darkblue;
+    margin-top: 50px;
     color: darkcyan;
     font-family: Brush Script MT, sans-serif;
+    font-size: 72px;
+    text-shadow: 1px 0px 0px #686868, 1px 1px 0px #686868, 0px 1px 0px #686868,
+    -1px 1px 0px #686868, -1px 0px 0px #686868, -1px -1px 0px #686868,
+    0px -1px 0px #686868, 1px -1px 0px #686868, 1px 4px 5px #aeaeae;
 }
 
 #bodylayout {
@@ -39,6 +106,14 @@ body {
     height:270px;
     padding-top: 10px;
     border-radius: 50px;
+}
+
+#teamname {
+    text-align: center;
+    border: 1px solid green;
+    height: 30px;
+    background-color: lightgoldenrodyellow;
+    border-radius: 7px;
 }
 
 #empty_up {
@@ -77,10 +152,24 @@ body {
     opacity: 0.2;
 }
 
+#pikachu_icon {
+    background-image: url('/static/img/pikachu.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 135px;
+    width: 150px;
+}
+
 .pokebox {
-    padding-top: 15px;
+    margin: 5px;
+    padding-top: 5px;
     display: inline-block;
 }
+
+/*.pokebox:hover {*/
+    /*border: 2px solid grey;*/
+/*}*/
+
 .pokemon {
     border: 1px solid black;
     border-radius: 40%;
@@ -111,8 +200,11 @@ body {
     display: none;
 }
 
-.start_battle {
-    display: none;
+.battle_start {
+    /*display: none;*/
+    height: 60px;
+    width: 200px;
+    font-size: 16px;
 }
 
 #all_team{
@@ -140,4 +232,73 @@ body {
     height: 80px;
     background: white;
     border-radius: 40%;
+}
+
+.teambutton {
+    margin-bottom: 20px;
+}
+
+.box_green {
+    border-radius: 3px;
+    border: grey;
+    margin: 5px;
+    background-color: lightgreen;
+}
+
+.box_yellow {
+    border-radius: 3px;
+    border: grey;
+    margin: 5px;
+    background-color: lightyellow;
+    opacity: 0.6;
+}
+
+#y {
+    margin: 10px;
+    border: 2px solid green;
+    border-radius: 3px;
+    background-color: lightgreen;
+    width: 150px;
+    height: 25px;
+}
+
+#a {
+    margin: 10px;
+    border: 2px solid #FFCC00;
+    border-radius: 3px;
+    background-color: lightyellow;
+    width: 150px;
+    height: 25px;
+}
+
+#t {
+    margin: 10px;
+    border: 2px solid lightgray;
+    border-radius: 3px;
+    width: 150px;
+    height: 25px;
+}
+
+.delete:hover {
+    border: 3px solid yellow;
+}
+
+.img_hover:hover {
+    border: 3px solid lightblue;
+}
+
+#right_gif {
+    border: 3px solid grey;
+    border-radius: 20px;
+    background-color: lightyellow;
+    width: 250px;
+    height: 250px;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+#big_pic {
+    max-width:100%;
+    max-height:100%;
 }

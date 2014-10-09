@@ -1,21 +1,25 @@
 {% extends 'base_template.html' %}
+{% load staticfiles %}
+
 {% block title %}
-    faq
+    <link type="text/css" href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 {% endblock title %}
 
-
-
 {% block content %}
-    <h1>FAQ!</h1>
-    <hr>
+    <div class="container">
+        <h1 align="center">FAQ!</h1>
+        <hr>
 
 
-    <h3>Q1. Hell ya?</h3>
-    <p>A: Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit!
-    Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit!
-    Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit!
-    Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit!
-    Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! </p>
-
+        <h3>Q1. Hell ya?</h3>
+        <p>A: Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit!
+        Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit!
+        Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit!
+        Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit!
+        Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! Hit! </p>
+    </div>
 
 {% endblock content %}
+

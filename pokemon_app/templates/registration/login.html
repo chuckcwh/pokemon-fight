@@ -1,17 +1,27 @@
-{% extends "base_template.html" %}
+{% extends 'base_template.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    <link type="text/css" href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+{% endblock title %}
 
 {% block content %}
+    <div class="container">
+        <div class="middlebox">
+        <form method="post" action=".">
+                {% csrf_token %}
+                {{ form.as_p }}
 
-    <div class="middlebox">
-    <form method="post" action=".">
-            {% csrf_token %}
-            {{ form.as_p }}
+                <input type="submit" value="Log in">
+            </form>
 
-            <input type="submit" value="Log in">
-        </form>
-
-        <p>Not member? <a href="{% url 'register' %}">Register!</a></p>
-        <p>Forgot your password? <a href="{% url 'password_reset' %}">Click here</a></p>
+            <p>Not member? <a href="{% url 'register' %}">Register!</a></p>
+            <p>Forgot your password? <a href="{% url 'password_reset' %}">Click here</a></p>
+        </div>
     </div>
-
 {% endblock %}
+
+
+
