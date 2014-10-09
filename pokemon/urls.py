@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
@@ -37,4 +38,8 @@ urlpatterns = patterns('',
     url(r'^my_battle_pokemon/$', 'pokemon_app.views.my_battle_pokemon', name='my_battle_pokemon'),
     url(r'^beat_and_catch/$', 'pokemon_app.views.beat_and_catch', name='beat_and_catch'),
     url(r'^team_for_delete/$', 'pokemon_app.views.team_for_delete', name='team_for_delete'),
+)
+
+urlpatterns += patterns('',
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 )
