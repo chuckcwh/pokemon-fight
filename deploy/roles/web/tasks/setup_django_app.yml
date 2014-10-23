@@ -25,3 +25,11 @@
     virtualenv: '{{ virtualenv_path }}'
     settings: '{{ django_settings_file }}'
   tags: django
+
+#- name: create super User
+#  django_manage:
+#    command: createsuperuser
+#    app_path: '{{ project_path }}'
+#    virtualenv: '{{ virtualenv_path }}'
+#    settings: '{{ django_settings_file }}'
+#  tags: django-create-superuser

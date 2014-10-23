@@ -5,3 +5,5 @@ git_repo: https://github.com/chuckcwh/pokemon-fight.git
 project_name: pokemon
 project_path: "/home/ubuntu/{{ project_name }}"
 requirements_file: "{{ project_path }}/requirements.txt"
+my_email: chuckcwh@gmail.com
+my_email_pwd: b12456789
