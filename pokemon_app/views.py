@@ -4,41 +4,41 @@ from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from django.core.mail import EmailMultiAlternatives
 from django.http import HttpResponse
-from django.shortcuts import render, render_to_response, redirect
-
-# Create your views here.
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
-import time
 from pokemon import settings
 from pokemon_app.forms import EmailUserCreationForm
 from pokemon_app.models import Pokemon, Team
 
+# Create your views here.
 def home(request):
     return render(request, 'home.html')
+
 
 @login_required
 def pokemon(request):
     return render(request, 'pokemon.html')
 
+
 @login_required
 def pokemon_new_game(request):
     return render(request, 'pokemon_new_game.html')
+
 
 @login_required
 def pokemon_load_game(request):
     return render(request, 'pokemon_load_game.html')
 
+
 @login_required
 def pokemon_battle(request):
     return render(request, 'pokemon_battle.html')
 
-@login_required
-def pokemon_surprise(request):
-    return render(request, 'pokemon_surprise.html')
 
 @login_required
 def pokemon_lab(request):
     return render(request, 'pokemon_lab.html')
+
 
 def poke_lab_data(request):
     pokeCheck = []
@@ -75,7 +75,8 @@ def faq(request):
 
 @login_required
 def profile(request):
-    return render(request, 'profile.html', {})
+    return render(request, 'profile.html')
+
 
 def register(request):
     if request.method == 'POST':
@@ -95,6 +96,7 @@ def register(request):
         'form': form,
     })
 
+
 def user_team_pokemon(request):
     collection = []
     team_objects = Team.objects.filter(user = request.user)
@@ -103,6 +105,7 @@ def user_team_pokemon(request):
         json.dumps(collection),
         content_type='application.json'
     )
+
 
 def all_your_team(request):
     team_objects = Team.objects.filter(user = request.user)
@@ -126,6 +129,7 @@ def all_your_team(request):
                 content_type='application.json'
     )
 
+
 @csrf_exempt
 def pokemon_of_team(request):
     data = json.loads(request.body)
@@ -144,6 +148,7 @@ def pokemon_of_team(request):
                 json.dumps(collection),
                 content_type='application.json'
     )
+
 
 @csrf_exempt
 def new_pokemon(request):
@@ -169,6 +174,7 @@ def new_pokemon(request):
     return HttpResponse(response,
                         content_type='application/json')
 
+
 @csrf_exempt
 def beat_and_catch(request):
     pokemonadd = None
@@ -188,12 +194,14 @@ def beat_and_catch(request):
     return HttpResponse(response,
                         content_type='application/json')
 
+
 def remove_team(request, team_name):
     item = Team.objects.get(name=team_name)
     item.delete()
     # return HttpResponse(response,
     #                     content_type='application/json')
     # return redirect("home")
+
 
 def my_battle_pokemon(request):
     choose = None
@@ -212,6 +220,7 @@ def my_battle_pokemon(request):
                 json.dumps(choose),
                 content_type='application.json'
     )
+
 
 def team_for_delete(request):
     team_objects = Team.objects.filter(user = request.user)

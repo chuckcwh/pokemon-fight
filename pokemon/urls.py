@@ -25,7 +25,6 @@ urlpatterns = patterns('',
     url(r'^pokemon_new_game/$', 'pokemon_app.views.pokemon_new_game', name='pokemon_new_game'),
     url(r'^pokemon_load_game/$', 'pokemon_app.views.pokemon_load_game', name='pokemon_load_game'),
     url(r'^pokemon_battle/$', 'pokemon_app.views.pokemon_battle', name='pokemon_battle'),
-    url(r'^pokemon_surprise/$', 'pokemon_app.views.pokemon_surprise', name='pokemon_surprise'),
     url(r'^pokemon_lab/$', 'pokemon_app.views.pokemon_lab', name='pokemon_lab'),
 
     # ajax call

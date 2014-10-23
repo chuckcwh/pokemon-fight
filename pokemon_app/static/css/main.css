@@ -13,16 +13,6 @@ body {
 h1 {
     font-family: 'Lobster', cursive;
 }
-/*.home_pic {*/
-    /*height: 300px;*/
-    /*width: 400px;*/
-    /*background-image: url('/static/img/home_pokemon.jpg');*/
-    /*opacity: 0.2;*/
-    /*margin: 20px;*/
-    /*background-size: cover;*/
-    /*background-repeat: no-repeat;*/
-    /*border-radius: 15px;*/
-/*}*/
 
 #home_pokemon {
     background-image: url('/static/img/home_pokemon.jpg');
@@ -201,7 +191,6 @@ h1 {
 }
 
 .battle_start {
-    /*display: none;*/
     height: 60px;
     width: 200px;
     font-size: 16px;

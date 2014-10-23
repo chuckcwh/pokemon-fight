@@ -3,23 +3,14 @@
 
 
 {% block title %}
-
-    <link type="text/css" href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/battle.css' %}">
-
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="{% static 'js/battle.js' %}"></script>
-
 {% endblock title %}
 
 {% block content %}
-
-
-
-
-{#battle system#}
-
 
 
 {#battle window#}
@@ -78,9 +69,6 @@
     </div>
 
 
-
-
-
 {#show my pokemons#}
     <div class="row">
         <div class="col-md-3 botton_left_side">
@@ -96,8 +84,5 @@
             <h3><a style="text-decoration: none" href="{% url 'pokemon_lab' %}">Pokemon Lab <span class="glyphicon glyphicon-home"></span></a></h3>
         </div>
     </div>
-
-{#link back#}
-
 
 {% endblock content %}

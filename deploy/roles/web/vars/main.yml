@@ -1,0 +1,7 @@
+---
+
+virtualenv_path: "/home/ubuntu/.virtualenvs/pokemon"
+git_repo: https://github.com/chuckcwh/pokemon.git
+project_name: pokemon
+project_path: "/home/ubuntu/{{ project_name }}"
+requirements_file: "{{ project_path }}/requirements.txt"

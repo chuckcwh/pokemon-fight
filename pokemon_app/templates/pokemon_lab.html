@@ -2,12 +2,11 @@
 {% load staticfiles %}
 
 {% block title %}
-    <link type="text/css" href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="{% static 'js/lab.js' %}"></script>
-
 {% endblock title %}
 
 
@@ -69,36 +68,6 @@
                 </div>
             </div>
         </div>
-{#        <div align="center">#}
-{#            <h1>New Game!</h1>#}
-{##}
-{#            <button id="pokeOne" class="btn btn-info">Random One</button>#}
-{#            <button id="pokeTeam" class="btn btn-info">Random Team</button>#}
-{#            <button id="pokemy" class="btn btn-info">My Fav Team</button>#}
-{##}
-{#            <div id="team">#}
-{#                <div id="sprites">#}
-{#                </div>#}
-{#                <div id="throw">#}
-{#                    <span><i>Throw ~~</i></span>#}
-{#                    <img src="{% static "img/throw_pokemon_ball.gif" %}">#}
-{#                    <span><i>Poke Ball!</i></span>#}
-{#                </div>#}
-{#                <br>#}
-{#                <button id="save" class="btn btn-warning">Save pokemon(s)</button>#}
-{#            </div>#}
-{##}
-{#        </div>#}
-{##}
-{##}
-{#        <div id="footer">#}
-{#            <h3 id="all">Select Your Teams</h3>#}
-{#            <div id="your_pokeTeam"></div>#}
-{#            <div id="your_pokemons"></div>#}
-{#        </div>#}
-{#        <div align="right">#}
-{#            <a href="{% url 'pokemon_battle' %}">Start Battle!</a>#}
-{#        </div>#}
     </div>
 
 {% endblock content %}

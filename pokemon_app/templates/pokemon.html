@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title %}
-    <link type="text/css" href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="{% static 'js/index.js' %}"></script>
@@ -14,10 +14,10 @@
     <div id="pokemon">
         <div class="container" align="center">
             <h1><b><i>Pokemon world!</i></b></h1>
-            <p>
+            <span>
                 <button id="load_game" style="opacity: 0.6" class="btn btn-default"><i>Load Game</i></button>
                 <button id="new_game" style="opacity: 0.6" class="btn btn-default"><i>New Game</i></button>
-            </p>
+            </span>
         </div>
     </div>
 

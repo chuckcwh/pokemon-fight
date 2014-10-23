@@ -93,9 +93,7 @@ var pokemonData = [];
         localStorage.setItem("store_team", teamName);
         for (i=0;i<pokemonData.length;i++) {
             pokemonData[i].team = teamName;
-//            pokemonData[i].delay = i;
         }
-//        $('#team').hide();
         pokemo = JSON.stringify(pokemonData);
         $.ajax({
             url: '/new_pokemon/',
